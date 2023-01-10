@@ -1,0 +1,152 @@
+.shadow-screen-big-card {
+    position: fixed;
+    top: 20vh;
+    z-index: 3;
+}
+
+.close-big-card-img {
+    position: absolute;
+    right: -31px;
+    top: -41px;
+}
+
+.big-card {
+    width: 32rem;
+    margin: 10px;
+    border: 1px solid white;
+    box-shadow: 2px 2px 11px 0px white;
+}
+
+.big-card-headline {
+    font-weight: 800;
+    font-family: 'RUBIK', sans-serif;
+    font-size: 30px;
+}
+
+.big-card-img-div {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    min-height: 480px;
+    flex-direction: column;
+}
+
+
+.big-card-img {
+    z-index: 1;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.big-card-Dream-img {
+    width: fit-content;
+}
+
+.poke-shadow-big {
+    width: 486px;
+    position: absolute;
+    top: 346px;
+    left: 10px;
+}
+
+.big-card-body {
+    z-index: 1;
+}
+
+.big-card-nav {
+    background-color: black;
+
+}
+
+.big-card-tab-bar {
+    background-color: black;
+    border-bottom: 1px solid black;
+    border-bottom-left-radius: 20%;
+    border-bottom-right-radius: 20%;
+    min-height: 200px;
+}
+
+.stats-content-div {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px;
+    color: white;
+}
+
+.tab-content-div {
+    display: flex;
+    justify-content: space-around;
+    padding: 25px;
+    font-size: 20px;
+    color: white;
+}
+
+.stats-div {
+    display: flex;
+}
+
+.base-stat {
+    border: 1px solid white;
+    height: 4px;
+    width: 100%;
+}
+
+.stats-name-div {
+    font-family: 'PT', sans-serif;
+}
+
+.stats-bar-div {
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stats-num-div {
+    margin-right: 15px;
+}
+
+.progress {
+    background-color: black;
+    border: 1px solid grey;
+}
+
+.progress-bar {
+    background-color: white;
+}
+
+.info-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: white;
+}
+
+.height-weight-div {
+    display: flex;
+    justify-content: space-around;
+    min-width: 165px;
+}
+
+.expirience-div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-width: 220px;
+}
+
+.nav-link {
+    color: white;
+    border-top-left-radius: 0% !important;
+    font-size: 23px;
+}
+
+
+
+.nav-link:hover {
+    color: grey !important;
+}
+
+.abilities-div span {
+    color: white !important;
+}

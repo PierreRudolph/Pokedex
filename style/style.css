@@ -1,0 +1,402 @@
+.body-div {
+    position: relative;
+    margin: 0px;
+    font-family: 'Rubik', sans-serif;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.header {
+    padding: 15px;
+    width: 100%;
+    border-bottom: 1px solid white;
+}
+
+.dropdown-menu a {
+    color: white;
+}
+
+#pokedex {
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    min-height: 94vh;
+    color: white;
+}
+
+#pokedex-found {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    color: white;
+    padding: 20px;
+    border-bottom: 1px solid white;
+}
+
+.dropdown-div {
+    margin-left: 10px;
+}
+
+.poke-load-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.poke-offset-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 5px;
+}
+
+.poke-search-div {
+    display: flex;
+    align-items: end;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.poke-load-span {
+    color: white;
+    margin-right: 15px;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.poke-load-input {
+    width: 90px;
+    min-width: 90px;
+    margin-right: 10px;
+}
+
+.header-imgs {
+    transition: all 225ms ease-in-out;
+    width: 45px;
+    cursor: pointer;
+}
+
+.header-imgs:hover {
+    transform: scale(1.2);
+    transition: all 200ms ease-in-out
+}
+
+.header-imgs:active {
+    transform: rotate(45deg) scale(1);
+    transition: all 200ms ease-in-out
+}
+
+.flag-icons {
+    transition: all 200ms ease-in-out;
+    width: 33px;
+    cursor: pointer;
+}
+
+.poke-search-input {
+    margin-right: 10px;
+}
+
+.poke-search-span {
+    color: white;
+    margin-right: 15px;
+    font-weight: 500;
+    font-size: 25px;
+}
+
+.poke-card {
+    transition: all 225ms ease-in-out;
+    cursor: pointer;
+    width: 26rem;
+    height: 12rem;
+    flex-direction: row;
+    padding: 5px;
+    margin: 15px;
+}
+
+.poke-card:hover {
+    transition: all 225ms ease-in-out;
+    transform: scale(1.1);
+}
+
+.card-img {
+    z-index: 1;
+}
+
+.poke-card-body {
+    width: 14rem;
+    padding: 0px;
+    padding-top: 10px;
+}
+
+.poke-shadow {
+    width: 220px;
+    position: absolute;
+    bottom: -4px;
+    left: -4px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-around;
+    border-radius: 25% !important;
+    min-width: 220px;
+}
+
+.card-header h4 {
+    color: black;
+    font-weight: 600;
+    margin: 0px;
+}
+
+.types-div {
+    display: flex;
+    margin-top: 15px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.type-div span {
+    color: black;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.type-div {
+    border: 1px solid transparent;
+    border-radius: 35%;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-bottom: 4px;
+    margin-top: 10px;
+    background-color: #ffffff5c;
+    text-align: center;
+}
+
+.load-more-div {
+    width: 25%;
+}
+
+.load-more {
+    transition: all 225ms ease-in-out;
+    cursor: pointer;
+    background-color: black;
+    border: 2px solid white;
+    border-radius: 40%;
+    text-align: center;
+    font-size: 23px;
+    margin-bottom: 15px;
+}
+
+.load-more:hover {
+    transition: all 225ms ease-in-out;
+    border-style: grey;
+    background-color: grey;
+    color: white;
+}
+
+.pointer-none {
+    pointer-events: none;
+}
+
+.card-bg-fire {
+    background-color: #FF421C;
+}
+
+.card-bg-grass {
+    background-color: #62BC5A;
+}
+
+.card-bg-water {
+    background-color: #2C9BE3;
+}
+
+.card-bg-bug {
+    background-color: #92C12A;
+}
+
+.card-bg-ground {
+    background-color: #A67439;
+}
+
+.card-bg-normal {
+    background-color: #BBBBAA;
+}
+
+.card-bg-fairy {
+    background-color: #EC8FE6;
+}
+
+.card-bg-poison {
+    background-color: #9553CD;
+}
+
+.card-bg-electric {
+    background-color: #FFDC00;
+}
+
+.card-bg-psychic {
+    background-color: #FF6380;
+}
+
+.card-bg-dragon {
+    background-color: #5670BE;
+}
+
+.card-bg-ghost {
+    background-color: #6E4370;
+}
+
+.card-bg-ice {
+    background-color: #74CFC0;
+}
+
+.card-bg-flying {
+    background-color: #96CAFF;
+}
+
+.card-bg-dark {
+    background-color: #4E4545;
+}
+
+.card-bg-rock {
+    background-color: #BBAA66;
+}
+
+.card-bg-steel {
+    background-color: #AAAABB;
+}
+
+.card-bg-fighting {
+    background-color: #BB5544;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.footer {
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-evenly;
+    border-top: 1px solid white;
+    width: 80%;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.footer a:hover {
+    color: lightgrey;
+}
+
+.footer div {
+    margin-bottom: 5px;
+}
+
+.shadow-screen-privacy {
+    overflow: hidden;
+    background-color: rgba(150, 150, 150, 0.869);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 3;
+}
+
+.shadow-screen-impressum {
+    overflow: hidden;
+    background-color: rgba(150, 150, 150, 0.869);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    z-index: 3;
+}
+
+.privacy-policy {
+    overflow: scroll;
+    height: 100%;
+    width: 80%;
+    font-size: 15px;
+    padding: 15px;
+    background-color: black;
+    color: white;
+}
+
+.privacy-policy a {
+    color: white;
+    text-decoration: none;
+    border-bottom: 2px solid white;
+}
+
+.privacy-policy a:hover {
+    color: lightgrey;
+    border-color: lightgrey;
+}
+
+.impressum {
+    padding: 20px;
+    background-color: black;
+    color: white;
+}
+
+.impressum a {
+    text-decoration: none;
+    color: white;
+}
+
+.impressum a:hover {
+    color: lightgrey;
+}
+
+.attribution-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 275px;
+}
+
+.close-button-div {
+    display: flex;
+    justify-content: end;
+}
+
+.close-button {
+    transition: all 225ms ease-in-out;
+    filter: invert();
+    cursor: pointer;
+    height: 25px;
+}
+
+.close-button:hover {
+    transform: scale(1.2);
+    transition: all 200ms ease-in-out
+}
+
+.close-button:active {
+    transform: rotate(45deg) scale(1);
+    transition: all 200ms ease-in-out
+}

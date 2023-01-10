@@ -1,0 +1,137 @@
+@media(max-width: 810px) {
+    .header {
+        flex-direction: column;
+    }
+
+    .header-left {
+        margin-top: 1em;
+    }
+
+    .wrap-reverse {
+        flex-wrap: wrap-reverse;
+    }
+
+    .poke-search-span {
+        font-size: 1em !important;
+    }
+
+    .mobile {
+        min-width: 20em;
+    }
+
+    .poke-load-span {
+        font-size: 1em !important;
+    }
+
+    .poke-card {
+        width: 6rem !important;
+        height: 12rem !important;
+        padding: 0.1em !important;
+        margin: 0.2em !important;
+        flex-direction: column-reverse !important;
+
+    }
+
+    .poke-card-body {
+        width: 5.7rem !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        height: 57%;
+        padding-top: 0em !important;
+    }
+
+    .poke-shadow {
+        width: 6rem !important;
+        left: 0em !important;
+        bottom: 0em !important;
+    }
+
+    .shadow-screen-big-card {
+        top: 6vh !important;
+    }
+
+    #pokedex {
+        min-height: 50vh;
+        padding: 0.7em !important;
+    }
+
+    .card-header {
+        min-width: 1em !important;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.3em !important;
+    }
+
+    .card-header h4 {
+        margin: 0em !important;
+        font-size: 1em !important;
+    }
+
+    .types-div {
+        flex-direction: row !important;
+        margin-top: 0em !important;
+    }
+
+    .type-div {
+        padding: 0em;
+        padding-left: 0.2em !important;
+        padding-right: 0.2em !important;
+        margin: 0.2em;
+    }
+
+    .type-div span {
+        font-size: 0.6em !important;
+    }
+
+    .big-card {
+        width: 22em !important;
+        margin-top: 10px !important;
+    }
+
+    .close-big-card-img {
+        right: 2px !important;
+        top: -48px !important;
+    }
+
+    .big-card-img-div {
+        min-height: 17em !important;
+    }
+
+    .big-card-img {
+        width: 17em !important;
+    }
+
+    .poke-shadow-big {
+        width: 335px !important;
+        top: 213px !important;
+        left: 15px !important;
+    }
+
+    .nav-link {
+        font-size: 1em !important;
+    }
+
+    .stats-bar-div {
+        width: 5em !important;
+    }
+
+    .load-more-div {
+        width: 50% !important;
+    }
+
+    .load-more {
+        font-size: 1em !important;
+    }
+
+    .shadow-screen-impressum {
+        align-items: flex-start !important;
+        padding-top: 10vh !important;
+        ;
+    }
+
+    .privacy-policy {
+        width: 100% !important;
+    }
+}
