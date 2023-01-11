@@ -37,11 +37,14 @@ async function loadPokemonJSON(pokeList) {
 async function searchPokemonById() {
     let pokeId = document.getElementById('search-input');
     if (pokeId.value >= 1) {
+        playAnySound('click-high');
         getPokemonById(pokeId.value);
         setTimeout(function () {
             pokeId.value = '';
             currentPokemon = '';
         }, 500);
+    } else {
+        playAnySound('click-low');
     }
 }
 
@@ -58,6 +61,7 @@ async function getPokemonById(id) {
 
 
 function loadMore() {
+    playAnySound('click-high');
     onOrOffAllLinks('off');
     pokeLoadNumber = 25;
     saveNumValue('poke-load-num', pokeLoadNumber);
@@ -84,26 +88,32 @@ function renderCard(divName) {
 
 function getCardHTML(pokeImg, pokeId, pokeName, bgClassName) {
     return /*html*/`
-        <div onclick="getPokemonByIdBigCard(${pokeId})" class="card poke-card card-bg-${bgClassName}">
-    <div class="d-flex">
-        <img src="img/ellipses.png" class="poke-shadow">
-        <div class="card-img">
-            <img id="poke-img" style="width:100%" src="${pokeImg}" alt="...">
+       <div>
+            <a onclick="getPokemonByIdBigCard(${pokeId})">
+                <div class="card poke-card card-bg-${bgClassName}">
+                    <div class="d-flex">
+                        <img src="img/ellipses.png" class="poke-shadow">
+                        <div class="card-img">
+                            <img id="poke-img" style="width:100%" src="${pokeImg}" alt="...">
+                        </div>
+                    </div>
+                    <div class="card-body poke-card-body">
+                        <div class="card-header text-dark">
+                            <h4>${pokeName}</h4>
+                            <span>${pokeId}#</span>
+                        </div>
+                        <div class="types-div" id="types-div-${typesDivId}">
+                        </div>
+                    </div>
+                </div>  
+            </a>
         </div>
-    </div>
-    <div class="card-body poke-card-body">
-        <div class="card-header text-dark">
-            <h4>${pokeName}</h4>
-            <span>${pokeId}#</span>
-        </div>
-        <div class="types-div" id="types-div-${typesDivId}"></div>
-    </div>
-</div>
 `;
 }
 
 
 function setTranslationNum() {
+    playAnySound('click-high');
     if (translationNum == 0) {
         translationNum++;
         saveNumValue('translation-num', translationNum);
@@ -117,6 +127,7 @@ function setTranslationNum() {
 
 
 function setOffsetNumber(genNum) {
+    playAnySound('click-high');
     let offsetInput = document.getElementById('offset-input');
     if (genNum >= 0) {
         offsetNum = genNum;
@@ -131,6 +142,7 @@ function setOffsetNumber(genNum) {
 
 
 function setNumberLoadedPokemon() {
+    playAnySound('click-high');
     let numberInput = document.getElementById('number-input').value;
     pokeLoadNumber = numberInput;
 
@@ -336,6 +348,7 @@ function upperCaseFirstLetter(name) {
 
 
 function showImpressumOrPrivacyPolicy(imp_pri) {
+    playAnySound('click-high');
     let impPri = document.getElementById(`${imp_pri}`);
     impPri.classList.remove('d-none');
     if (imp_pri == 'privacy-policy') {
@@ -345,6 +358,7 @@ function showImpressumOrPrivacyPolicy(imp_pri) {
 
 
 function closeImpressumOrPrivacyPolicy(imp_pri) {
+    playAnySound('click-low');
     let impPri = document.getElementById(`${imp_pri}`);
     impPri.classList.add('d-none');
     bodyOverflowOnOff(0);
@@ -359,4 +373,21 @@ function bodyOverflowOnOff(onOff) {
     if (onOff == 0) {
         body.classList.remove('overflow-hidden');
     }
+}
+
+
+function playBackgroundMusic() {
+    let music = document.getElementById('background-music');
+    music.volume = 0.5;
+    music.load();
+    music.play();
+    music.loop = true;
+}
+
+
+function playAnySound(soundName) {
+    let sound = new Audio(src = `sounds/${soundName}.mp3`);
+    sound.volume = 0.7;
+    sound.load();
+    sound.play();
 }

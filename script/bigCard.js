@@ -9,6 +9,7 @@ async function getPokemonBigCard(Id) {
 
 
 async function getPokemonByIdBigCard(id) {
+    playAnySound('click-high');
     let url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     let response = await fetch(url);
     currentPokemon = await response.json();
