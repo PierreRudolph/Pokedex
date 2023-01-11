@@ -1,24 +1,17 @@
 let currentPokemon;
-let typesDivId = -1;
 let pokeLoadNumber = 25;
 let offsetNum = 0;
+let startNum = 0;
+
 let lastCardId = 0
+let typesDivId = -1;
 let translationNum = 0;
 
 
 async function getPokemonJSON(startFrom) {
-    let startNum = 0;
+    getSavedSettings();
+    startNum = checkStartFrom(startFrom);
 
-    getSavedTranslationNum();
-    getSavedPokeLoadNum();
-    getSavedOffsetNum();
-    setFlagIcon();
-    if (startFrom == 'offset') {
-        startNum = offsetNum;
-    }
-    if (startFrom == 'last-card') {
-        startNum = lastCardId;
-    }
     let listUrl = `https://pokeapi.co/api/v2/pokemon/?offset=${startNum}&limit=${pokeLoadNumber}"`;
     let listResponse = await fetch(listUrl);
     let pokeList = await listResponse.json();
@@ -92,21 +85,20 @@ function renderCard(divName) {
 function getCardHTML(pokeImg, pokeId, pokeName, bgClassName) {
     return /*html*/`
         <div onclick="getPokemonByIdBigCard(${pokeId})" class="card poke-card card-bg-${bgClassName}">
-            <div class="d-flex">
-                <img src="img/ellipses.png" class="poke-shadow">
-                <div class="card-img">
-                    <img id="poke-img" style="width:100%" src="${pokeImg}" alt="...">
-                </div>           
-            </div>
-            <div class="card-body poke-card-body">
-                <div class="card-header text-dark">    
-                    <h4>${pokeName}</h4>
-                    <span>${pokeId}#</span>
-                </div>
-                <div class="types-div" id="types-div-${typesDivId}"></div>
-                </div>
-
+    <div class="d-flex">
+        <img src="img/ellipses.png" class="poke-shadow">
+        <div class="card-img">
+            <img id="poke-img" style="width:100%" src="${pokeImg}" alt="...">
         </div>
+    </div>
+    <div class="card-body poke-card-body">
+        <div class="card-header text-dark">
+            <h4>${pokeName}</h4>
+            <span>${pokeId}#</span>
+        </div>
+        <div class="types-div" id="types-div-${typesDivId}"></div>
+    </div>
+</div>
 `;
 }
 
@@ -235,6 +227,26 @@ function translateNameIfSetAndAvaiable(pokeId, pokeName) {
 }
 
 
+function getSavedSettings() {
+    getSavedTranslationNum();
+    getSavedPokeLoadNum();
+    getSavedOffsetNum();
+    setFlagIcon();
+}
+
+
+function checkStartFrom(startFrom) {
+    if (startFrom == 'offset') {
+        startNum = offsetNum;
+        return startNum;
+    }
+    if (startFrom == 'last-card') {
+        startNum = lastCardId;
+        return startNum;
+    }
+}
+
+
 function translateTypes() {
     if (translationNum == 0) {
         return
@@ -329,7 +341,6 @@ function showImpressumOrPrivacyPolicy(imp_pri) {
     if (imp_pri == 'privacy-policy') {
         bodyOverflowOnOff(1);
     }
-
 }
 
 
