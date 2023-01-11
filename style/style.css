@@ -327,7 +327,7 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     position: absolute;
     top: 0px;
     bottom: 0px;
@@ -361,15 +361,16 @@
     padding: 20px;
     background-color: black;
     color: white;
+    margin-top: 20vh;
 }
 
 .impressum a {
-    text-decoration: none;
     color: white;
 }
 
 .impressum a:hover {
     color: lightgrey;
+    text-decoration: dashed;
 }
 
 .attribution-div {
@@ -386,9 +387,8 @@
 
 .close-button {
     transition: all 225ms ease-in-out;
-    filter: invert();
     cursor: pointer;
-    height: 25px;
+    height: 30px;
 }
 
 .close-button:hover {
