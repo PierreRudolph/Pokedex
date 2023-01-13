@@ -3,6 +3,24 @@
 
 <head>
 
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
@@ -159,7 +177,7 @@
 
         </div>
         <div class="load-more-div"><a class="link-secondary" onclick="loadMore()">
-                <div class="load-more">Mehr Laden (20)</div>
+                <div class="load-more">Mehr Laden (25)</div>
             </a>
         </div>
         <div class="footer">
@@ -170,11 +188,10 @@
                 </div>
 
                 <div>
-                    <a onclick="showImpressumOrPrivacyPolicy('impressum')" href="#" class="">Impressum</a>
+                    <a onclick="removeDisplayNone('impressum')" href="#" class="">Impressum</a>
                 </div>
                 <div>
-                    <a onclick="showImpressumOrPrivacyPolicy('privacy-policy')" href="#"
-                        class="">Datenschutzerklärung</a>
+                    <a onclick="removeDisplayNone('privacy-policy')" href="#" class="">Datenschutzerklärung</a>
                 </div>
             </div>
         </div>
@@ -182,8 +199,7 @@
         <div id="impressum" class="shadow-screen-impressum d-none">
             <div class="impressum">
                 <div class="d-flex justify-content-end">
-                    <img class="close-button" src="img/pokeball-color.png"
-                        onclick="closeImpressumOrPrivacyPolicy('impressum')">
+                    <img class="close-button" src="img/pokeball-color.png" onclick="addDisplayNone('impressum')">
                 </div>
                 <h1>Impressum</h1>
 
@@ -234,8 +250,7 @@
 
             <div class="privacy-policy">
                 <div class="close-button-div">
-                    <img class="close-button" src="img/pokeball-color.png"
-                        onclick="closeImpressumOrPrivacyPolicy('privacy-policy')">
+                    <img class="close-button" src="img/pokeball-color.png" onclick="addDisplayNone('privacy-policy')">
                 </div>
                 <h1>Datenschutzerklärung</h1>
                 <p>Verantwortlicher im Sinne der Datenschutzgesetze, insbesondere der EU-Datenschutzgrundverordnung
@@ -380,7 +395,7 @@
                             href="https://www.activemind.de/datenschutz/datenschutzbeauftragter/" target="_blank"
                             rel="noopener">externe Datenschutzbeauftragte</a> (Version #2020-09-30).</em></p>
                 <div class="close-button-div">
-                    <a href="#" onclick="closeImpressumOrPrivacyPolicy('privacy-policy')">schließen</a>
+                    <a href="#" onclick="addDisplayNone('privacy-policy')">schließen</a>
                 </div>
             </div>
         </div>
@@ -389,12 +404,12 @@
 
             <div class="position-relative">
                 <div class="close-big-card-img">
-                    <a id="poke-load-img" onclick="closeImpressumOrPrivacyPolicy('big-card-div')"><img
-                            src="img/pokeball-color.png" class="header-imgs"></a>
+                    <a id="poke-load-img" onclick="addDisplayNone('big-card-div')"><img src="img/pokeball-color.png"
+                            class="header-imgs"></a>
                 </div>
                 <div class="card big-card" id="big-card">
 
-                    <nav class="navbar bg-body-tertiary ">
+                    <nav id="header-2" class="navbar bg-body-tertiary ">
                         <div id="header-1" class="container-fluid ">
                             <span class="navbar-brand big-card-headline mb-0 h1" id="big-card-name"></span>
                             <span class="navbar-brand big-card-headline mb-0 h1" id="big-card-id"></span>

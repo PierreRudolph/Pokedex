@@ -29,43 +29,65 @@ function formatNumber(number) {
 
 function renderBigCard() {
     let bigCardDiv = document.getElementById('big-card-div');
-    let bigCard = document.getElementById('big-card');
-    let pokeImg = currentPokemon['sprites']['other']['official-artwork']['front_default'];
-    let pokeId = currentPokemon['id'];
-    let pokeName = currentPokemon['name'];
-    let bgClassName = currentPokemon['types'][0]['type']['name'];
-    let height = currentPokemon['height'];
-    let weight = currentPokemon['weight'];
-    let baseExp = currentPokemon['base_experience'];
-    height = formatNumber(height);
-    weight = formatNumber(weight);
     bigCardDiv.classList.remove('d-none');
-    pokeName = upperCaseFirstLetter(pokeName);
-    typesDivId++;
-    pokeName = translateNameIfSetAndAvaiable(pokeId, pokeName);
-
-    let nameSpan = document.getElementById('big-card-name');
-    let idSpan = document.getElementById('big-card-id')
-    let imgSrc = document.getElementById('big-card-img');
-    let heightSpan = document.getElementById('height-span');
-    let weightSpan = document.getElementById('weight-span');
-    let expirienceSpan = document.getElementById('expirience-span');
+    let bigCard = document.getElementById('big-card');
     bigCard.className = '';
-    bigCard.classList.add('card', 'big-card', `card-bg-${bgClassName}`);
+    bigCard.classList.add('card', 'big-card', `card-bg-${currentPokemon['types'][0]['type']['name']}`);
+
+    bigCardinnerHTMLInfo();
+    getPokeStats();
+    getBarWidth();
+    getBigCardTypes();
+    getBigCardAbilities();
+    translateTypesIfSet();
+    // Make the DIV element draggable:
+    dragElement(document.getElementById("big-card-div"));
+    changeMouseStyle();
+}
+
+
+function bigCardinnerHTMLInfo() {
+    const { pokeImg, pokeId, pokeName, height, weight, baseExp } = getBigCardInfo();
+    const { nameSpan, idSpan, imgSrc, heightSpan, weightSpan, expirienceSpan } = getBigCardIds();
+
     nameSpan.innerHTML = pokeName;
     idSpan.innerHTML = `${pokeId}#`;
     imgSrc.src = pokeImg;
     heightSpan.innerHTML = `${height} m`;
     weightSpan.innerHTML = `${weight} kg`;
     expirienceSpan.innerHTML = baseExp;
+}
 
-    getPokeStats();
-    getBarWidth();
-    getBigCardTypes();
-    getBigCardAbilities();
-    translateTypes();
-    // Make the DIV element draggable:
-    dragElement(document.getElementById("big-card-div"));
+
+function getBigCardIds() {
+    return {
+        nameSpan: document.getElementById('big-card-name'),
+        idSpan: document.getElementById('big-card-id'),
+        imgSrc: document.getElementById('big-card-img'),
+        heightSpan: document.getElementById('height-span'),
+        weightSpan: document.getElementById('weight-span'),
+        expirienceSpan: document.getElementById('expirience-span')
+    }
+}
+
+
+function getBigCardInfo() {
+    pokeName = createPokemonName(currentPokemon['name'], currentPokemon['id'])
+    return {
+        pokeImg: currentPokemon['sprites']['other']['official-artwork']['front_default'],
+        pokeId: currentPokemon['id'],
+        pokeName: pokeName,
+        height: formatNumber(currentPokemon['height']),
+        weight: formatNumber(currentPokemon['weight']),
+        baseExp: currentPokemon['base_experience']
+    }
+}
+
+
+function changeMouseStyle() {
+    let bigCardHeader = document.getElementById('header-1');
+    bigCardHeader.onmouseenter = function () { body.style.cursor = 'move' };
+    bigCardHeader.onmouseleave = function () { body.style.cursor = 'default' };
 }
 
 

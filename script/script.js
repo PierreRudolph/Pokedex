@@ -8,6 +8,7 @@ let typesDivId = -1;
 let translationNum = 0;
 
 
+
 async function getPokemonJSON(startFrom) {
     getSavedSettings();
     startNum = checkStartFrom(startFrom);
@@ -29,12 +30,12 @@ async function loadPokemonJSON(pokeList) {
         renderCard('pokedex');
     }
     lastCardId = currentPokemon['id'];
-    translateTypes();
+    translateTypesIfSet();
     onOrOffAllLinks('on');
 }
 
 
-async function searchPokemonById() {
+function searchPokemonById() {
     let pokeId = document.getElementById('search-input');
     if (pokeId.value >= 1) {
         playAnySound('click-high');
@@ -56,7 +57,7 @@ async function getPokemonById(id) {
     pokeFoundDiv.classList.remove('d-none');
     currentPokemon = await response.json();
     renderCard('pokedex-found');
-    translateTypes();
+    translateTypesIfSet();
 }
 
 
@@ -73,24 +74,27 @@ function renderCard(divName) {
     let pokeDiv = document.getElementById(`${divName}`);
     let pokeImg = currentPokemon['sprites']['other']['official-artwork']['front_default'];
     let pokeId = currentPokemon['id'];
-    let pokeName = currentPokemon['name'];
-
+    let pokeName = createPokemonName(currentPokemon['name'], pokeId);
     let bgClassName = currentPokemon['types'][0]['type']['name'];
-    pokeName = upperCaseFirstLetter(pokeName);
+    if (!pokeImg) {
+        return;
+    }
     typesDivId++;
-    pokeName = translateNameIfSetAndAvaiable(pokeId, pokeName);
-
     pokeDiv.innerHTML += getCardHTML(pokeImg, pokeId, pokeName, bgClassName);
-
     getPokemonTypes();
+}
+
+
+function createPokemonName(pokeName, pokeId) {
+    pokeName = upperCaseFirstLetter(pokeName);
+    return translateNameIfSetAndAvaiable(pokeId, pokeName);
 }
 
 
 function getCardHTML(pokeImg, pokeId, pokeName, bgClassName) {
     return /*html*/`
        <div>
-            <a onclick="getPokemonByIdBigCard(${pokeId})">
-                <div class="card poke-card card-bg-${bgClassName}">
+                <div onclick="getPokemonByIdBigCard(${pokeId})" class="card poke-card card-bg-${bgClassName}">
                     <div class="d-flex">
                         <img src="img/ellipses.png" class="poke-shadow">
                         <div class="card-img">
@@ -106,7 +110,6 @@ function getCardHTML(pokeImg, pokeId, pokeName, bgClassName) {
                         </div>
                     </div>
                 </div>  
-            </a>
         </div>
 `;
 }
@@ -122,7 +125,8 @@ function setTranslationNum() {
         saveNumValue('translation-num', translationNum)
     }
     clearPokedex();
-    getPokemonJSON();
+    clearPokedexFound();
+    getPokemonJSON('offset');
 }
 
 
@@ -208,6 +212,12 @@ function clearPokedex() {
 }
 
 
+function clearPokedexFound() {
+    let pokedexFound = document.getElementById('pokedex-found');
+    pokedexFound.innerHTML = '';
+}
+
+
 function getPokemonTypes() {
     let pokeTypes = currentPokemon['types'];
 
@@ -259,7 +269,7 @@ function checkStartFrom(startFrom) {
 }
 
 
-function translateTypes() {
+function translateTypesIfSet() {
     if (translationNum == 0) {
         return
     }
@@ -347,7 +357,7 @@ function upperCaseFirstLetter(name) {
 }
 
 
-function showImpressumOrPrivacyPolicy(imp_pri) {
+function removeDisplayNone(imp_pri) {
     playAnySound('click-high');
     let impPri = document.getElementById(`${imp_pri}`);
     impPri.classList.remove('d-none');
@@ -357,7 +367,7 @@ function showImpressumOrPrivacyPolicy(imp_pri) {
 }
 
 
-function closeImpressumOrPrivacyPolicy(imp_pri) {
+function addDisplayNone(imp_pri) {
     playAnySound('click-low');
     let impPri = document.getElementById(`${imp_pri}`);
     impPri.classList.add('d-none');
