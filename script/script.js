@@ -32,6 +32,7 @@ async function loadPokemonJSON(pokeList) {
     lastCardId = currentPokemon['id'];
     translateTypesIfSet();
     onOrOffAllLinks('on');
+    playAnySound('click-low');
 }
 
 
@@ -62,6 +63,7 @@ async function getPokemonById(id) {
 
 
 function loadMore() {
+    playBackgroundMusic();
     playAnySound('click-high');
     onOrOffAllLinks('off');
     pokeLoadNumber = 25;
@@ -388,13 +390,15 @@ function bodyOverflowOnOff(onOff) {
 
 function playBackgroundMusic() {
     let music = document.getElementById('background-music');
-    music.volume = 0.5;
-    music.load();
-    music.play();
-    music.loop = true;
+
+    if (!isPlaying(music)) {
+        music.load();
+        music.volume = 0.5;
+        music.play();
+        music.loop = true;
+    }
 }
-
-
+function isPlaying(audelem) { return !audelem.paused; }
 function playAnySound(soundName) {
     let sound = new Audio(src = `sounds/${soundName}.mp3`);
     sound.volume = 0.7;

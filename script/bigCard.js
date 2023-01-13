@@ -1,14 +1,5 @@
-async function getPokemonBigCard(Id) {
-    let pokeId = document.getElementById('search-input');
-    getPokemonByIdBigCard(Id);
-    setTimeout(function () {
-        pokeId.value = '';
-        currentPokemon = '';
-    }, 500);
-}
-
-
 async function getPokemonByIdBigCard(id) {
+    playBackgroundMusic();
     playAnySound('click-high');
     let url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     let response = await fetch(url);
