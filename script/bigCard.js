@@ -150,7 +150,6 @@ function getNormalImg() {
 }
 
 
-/*https://www.w3schools.com/howto/howto_js_draggable.asp*/
 function dragElement(elmnt) {
 
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
