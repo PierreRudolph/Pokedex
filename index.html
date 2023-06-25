@@ -29,6 +29,7 @@
 
     <script src="script/bigCard.js"></script>
     <script src="script/pokeNamesDe.js"></script>
+    <script src="script/translation.js"></script>
     <script src="script/script.js"></script>
     <link rel="stylesheet" href="style/@media.css">
     <link rel="stylesheet" href="style/bigCard.css">
@@ -54,7 +55,7 @@
                     <div class="poke-load-div mb-3">
 
                         <div class="poke-load-span">
-                            <span>Pokemon Anzeigen:</span>
+                            <span id="how-many-text">Pokemon Anzeigen:</span>
                         </div>
 
                         <div class="poke-load-input">
@@ -70,7 +71,7 @@
                     <div class="poke-offset-div">
 
                         <div class="poke-load-span">
-                            <span>Ab Id# Laden:</span>
+                            <span id="from-id-text">Ab Id# Laden:</span>
                         </div>
 
                         <div class="poke-load-input">
@@ -84,7 +85,7 @@
 
                         <div class="dropdown dropdown-center dropdown-div">
                             <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-button bg-dark"
-                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                type="button" data-bs-toggle="dropdown" aria-expanded="false" id="load-gen-text">
                                 Gen. laden
                             </button>
                             <ul class="dropdown-menu bg-dark">
@@ -146,7 +147,7 @@
                     </div>
                     <div class="d-flex mobile">
                         <div class="poke-search-span">
-                            <span>Pokemon finden:</span>
+                            <span id="find-text">Pokemon finden:</span>
                         </div>
 
                         <div class="d-flex align-items-center">
@@ -168,7 +169,7 @@
 
         <div id="pokedex-found-div" class="d-none">
             <div class="mt-2 text-light text-center">
-                <h5>Pokemon found:</h5>
+                <h5 id="poke-found-text">Gefundene Pokemon:</h5>
             </div>
             <div id="pokedex-found"></div>
         </div>
@@ -177,7 +178,7 @@
 
         </div>
         <div class="load-more-div"><a class="link-secondary" onclick="loadMore()">
-                <div class="load-more">Mehr Laden (25)</div>
+                <div class="load-more" id="load-more-text">Mehr Laden (25)</div>
             </a>
         </div>
         <div class="footer">
@@ -188,10 +189,11 @@
                 </div>
 
                 <div>
-                    <a onclick="removeDisplayNone('impressum')" href="#" class="">Impressum</a>
+                    <a onclick="removeDisplayNone('impressum')" href="#" class="" id="imprint-text">Impressum</a>
                 </div>
                 <div>
-                    <a onclick="removeDisplayNone('privacy-policy')" href="#" class="">Datenschutzerklärung</a>
+                    <a onclick="removeDisplayNone('privacy-policy')" href="#" class=""
+                        id="data-policy-text">Datenschutzerklärung</a>
                 </div>
             </div>
         </div>
@@ -426,7 +428,7 @@
 
                         <ul class="nav nav-tabs big-card-nav" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                                <button class="nav-link active" id="base-stats-text" data-bs-toggle="tab"
                                     data-bs-target="#home-tab-pane" type="button" role="tab"
                                     aria-controls="home-tab-pane" aria-selected="true">Base stats</button>
                             </li>
@@ -436,7 +438,7 @@
                                     aria-controls="profile-tab-pane" aria-selected="false">Info</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
+                                <button class="nav-link" id="abilities-text" data-bs-toggle="tab"
                                     data-bs-target="#contact-tab-pane" type="button" role="tab"
                                     aria-controls="contact-tab-pane" aria-selected="false">Abilities</button>
                             </li>
@@ -447,12 +449,12 @@
                                 aria-labelledby="home-tab" tabindex="0">
                                 <div class="stats-content-div">
                                     <div class="stats-name-div">
-                                        <div><span>HP</span></div>
-                                        <div><span>ATTACK</span></div>
-                                        <div><span>DEFENSE</span></div>
-                                        <div><span>SPECIAL-ATTACK</span></div>
-                                        <div><span>SPECIAL-DEFENSE</span></div>
-                                        <div><span>SPEED</span></div>
+                                        <div><span id="hp-text">HP</span></div>
+                                        <div><span id="attack-text">ATTACK</span></div>
+                                        <div><span id="defense-text">DEFENSE</span></div>
+                                        <div><span id="special-attack-text">SPECIAL-ATTACK</span></div>
+                                        <div><span id="special-defense-text">SPECIAL-DEFENSE</span></div>
+                                        <div><span id="speed-text">SPEED</span></div>
                                     </div>
 
                                     <div class="stats-div">
@@ -494,19 +496,19 @@
                                 <div class="tab-content-div">
                                     <div class="info-div">
                                         <div class="height-weight-div">
-                                            <div><span>Height:</span></div>
+                                            <div><span id="height-text">Height:</span></div>
                                             <div><span id="height-span"></span></div>
                                         </div>
 
                                         <div class="height-weight-div">
-                                            <div><span>Weight:</span></div>
+                                            <div><span id="weight-text">Weight:</span></div>
                                             <div><span id="weight-span"></span></div>
 
                                         </div>
                                     </div>
 
                                     <div>
-                                        <div><span>Types:</span></div>
+                                        <div><span id="types-text">Types:</span></div>
                                         <div id="big-card-types">
                                         </div>
                                     </div>
@@ -516,11 +518,11 @@
                                 aria-labelledby="contact-tab" tabindex="0">
                                 <div class="tab-content-div">
                                     <div class="expirience-div">
-                                        <div><span>Base Expirience:</span></div>
+                                        <div><span id="base-exp-text">Base Expirience:</span></div>
                                         <div><span id="expirience-span"></span></div>
                                     </div>
                                     <div>
-                                        <div><span>Abilities:</span></div>
+                                        <div><span id="abilities2-text">Abilities:</span></div>
                                         <div class="abilities-div" id="abilities-div">
 
                                         </div>

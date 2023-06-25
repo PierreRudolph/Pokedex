@@ -3,7 +3,7 @@ async function getPokemonByIdBigCard(id) {
     playAnySound('click-high');
     let url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     let response = await fetch(url);
-    currentPokemon = await response.json();
+    currentBigCardPokemon = await response.json();
     renderBigCard();
 
 }
@@ -23,7 +23,7 @@ function renderBigCard() {
     bigCardDiv.classList.remove('d-none');
     let bigCard = document.getElementById('big-card');
     bigCard.className = '';
-    bigCard.classList.add('card', 'big-card', `card-bg-${currentPokemon['types'][0]['type']['name']}`);
+    bigCard.classList.add('card', 'big-card', `card-bg-${currentBigCardPokemon['types'][0]['type']['name']}`);
 
     bigCardinnerHTMLInfo();
     getPokeStats();
@@ -34,6 +34,15 @@ function renderBigCard() {
     // Make the DIV element draggable:
     dragElement(document.getElementById("big-card-div"));
     changeMouseStyle();
+}
+
+
+function translateTextIfSet() {
+    if (translatenNum == 1) {
+        translateBigCardToGerman();
+    } else if (translatenNum == 0) {
+        translateBigCardToEnglish();
+    }
 }
 
 
@@ -63,14 +72,14 @@ function getBigCardIds() {
 
 
 function getBigCardInfo() {
-    pokeName = createPokemonName(currentPokemon['name'], currentPokemon['id'])
+    pokeName = createPokemonName(currentBigCardPokemon['name'], currentBigCardPokemon['id'])
     return {
-        pokeImg: currentPokemon['sprites']['other']['official-artwork']['front_default'],
-        pokeId: currentPokemon['id'],
+        pokeImg: currentBigCardPokemon['sprites']['other']['official-artwork']['front_default'],
+        pokeId: currentBigCardPokemon['id'],
         pokeName: pokeName,
-        height: formatNumber(currentPokemon['height']),
-        weight: formatNumber(currentPokemon['weight']),
-        baseExp: currentPokemon['base_experience']
+        height: formatNumber(currentBigCardPokemon['height']),
+        weight: formatNumber(currentBigCardPokemon['weight']),
+        baseExp: currentBigCardPokemon['base_experience']
     }
 }
 
@@ -83,7 +92,7 @@ function changeMouseStyle() {
 
 
 function getPokeStats() {
-    let pokeStats = currentPokemon['stats'];
+    let pokeStats = currentBigCardPokemon['stats'];
     for (let i = 0; i < pokeStats.length; i++) {
         let statSpan = document.getElementById(`stat-${i}`);
         statSpan.innerHTML = pokeStats[i]['base_stat'];
@@ -92,7 +101,7 @@ function getPokeStats() {
 
 
 function getBarWidth() {
-    let pokeStats = currentPokemon['stats'];
+    let pokeStats = currentBigCardPokemon['stats'];
     for (let i = 0; i < pokeStats.length; i++) {
         let barWidth = document.getElementById(`stat-bar-${i}`)
         let pokeStat = pokeStats[i]['base_stat'];
@@ -104,10 +113,10 @@ function getBarWidth() {
 
 function getBigCardAbilities() {
     let abilitiesDiv = document.getElementById('abilities-div');
-    let abilities = currentPokemon['abilities'];
+    let abilities = currentBigCardPokemon['abilities'];
     abilitiesDiv.innerHTML = '';
     for (let i = 0; i < abilities.length; i++) {
-        let ability = currentPokemon['abilities'][i]['ability']['name'];
+        let ability = currentBigCardPokemon['abilities'][i]['ability']['name'];
         abilitiesDiv.innerHTML += /*html*/`
         <div class="type-div"><span>${ability}</span></div>
         `;
@@ -116,11 +125,11 @@ function getBigCardAbilities() {
 
 
 function getBigCardTypes() {
-    let pokeTypes = currentPokemon['types'];
+    let pokeTypes = currentBigCardPokemon['types'];
     let typesDiv = document.getElementById('big-card-types');
     typesDiv.innerHTML = '';
     for (let a = 0; a < pokeTypes.length; a++) {
-        let pokeType = currentPokemon['types'][a]['type']['name'];
+        let pokeType = currentBigCardPokemon['types'][a]['type']['name'];
         pokeType = upperCaseFirstLetter(pokeType);
         typesDiv.innerHTML = '';
         typesDiv.innerHTML += /*html*/`
@@ -136,7 +145,7 @@ function getBigCardTypes() {
 
 function getDreamWorldImg() {
     let img = document.getElementById("big-card-img");
-    let dreamWorldImg = currentPokemon['sprites']['other']['dream_world']['front_default'];
+    let dreamWorldImg = currentBigCardPokemon['sprites']['other']['dream_world']['front_default'];
     if (dreamWorldImg) {
         img.src = dreamWorldImg;
     }
@@ -146,7 +155,7 @@ function getDreamWorldImg() {
 
 function getNormalImg() {
     let img = document.getElementById("big-card-img");
-    img.src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
+    img.src = currentBigCardPokemon['sprites']['other']['official-artwork']['front_default'];
 }
 
 

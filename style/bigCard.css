@@ -8,6 +8,8 @@
     position: absolute;
     right: -31px;
     top: -41px;
+    box-shadow: 0px 0px 10px 4px #000000a3;
+    border-radius: 50%;
 }
 
 .big-card {
@@ -139,8 +141,6 @@
     border-top-left-radius: 0% !important;
     font-size: 23px;
 }
-
-
 
 .nav-link:hover {
     color: grey !important;

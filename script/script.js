@@ -6,8 +6,7 @@ let startNum = 0;
 let lastCardId = 0
 let typesDivId = -1;
 let translationNum = 0;
-
-
+let currenBigCardPokemon;
 
 async function getPokemonJSON(startFrom) {
     getSavedSettings();
@@ -117,21 +116,6 @@ function getCardHTML(pokeImg, pokeId, pokeName, bgClassName) {
 }
 
 
-function setTranslationNum() {
-    playAnySound('click-high');
-    if (translationNum == 0) {
-        translationNum++;
-        saveNumValue('translation-num', translationNum);
-    } else {
-        translationNum--;
-        saveNumValue('translation-num', translationNum)
-    }
-    clearPokedex();
-    clearPokedexFound();
-    getPokemonJSON('offset');
-}
-
-
 function setOffsetNumber(genNum) {
     playAnySound('click-high');
     let offsetInput = document.getElementById('offset-input');
@@ -160,14 +144,6 @@ function setNumberLoadedPokemon() {
 
 function saveNumValue(key, value) {
     localStorage.setItem(key, value);
-}
-
-
-function getSavedTranslationNum() {
-    let savedNum = localStorage.getItem('translation-num');
-    if (savedNum) {
-        translationNum = savedNum;
-    }
 }
 
 
@@ -240,17 +216,6 @@ function getPokemonTypes() {
 }
 
 
-function translateNameIfSetAndAvaiable(pokeId, pokeName) {
-    if (translationNum == 0) {
-        return pokeName;
-    }
-    if (pokeNamesDe[pokeId - 1]) {
-        pokeName = pokeNamesDe[pokeId - 1];
-    }
-    return pokeName;
-}
-
-
 function getSavedSettings() {
     getSavedTranslationNum();
     getSavedPokeLoadNum();
@@ -267,74 +232,6 @@ function checkStartFrom(startFrom) {
     if (startFrom == 'last-card') {
         startNum = lastCardId;
         return startNum;
-    }
-}
-
-
-function translateTypesIfSet() {
-    if (translationNum == 0) {
-        return
-    }
-    let allSpans = document.getElementsByTagName('span');
-
-    for (let i = 0; i < allSpans.length; i++) {
-        let string = allSpans[i].innerHTML;
-        let span = allSpans[i];
-
-        if (string.includes('Water')) {
-            span.innerHTML = 'Wasser';
-        }
-        if (string.includes('Grass')) {
-            span.innerHTML = 'Pflanze';
-        }
-        if (string.includes('Fire')) {
-            span.innerHTML = 'Feuer';
-        }
-        if (string.includes('Ground')) {
-            span.innerHTML = 'Boden';
-        }
-        if (string.includes('Bug')) {
-            span.innerHTML = 'Käfer';
-        }
-        if (string.includes('Steel')) {
-            span.innerHTML = 'Stahl';
-        }
-        if (string.includes('Dark')) {
-            span.innerHTML = 'Unlicht';
-        }
-        if (string.includes('Flying')) {
-            span.innerHTML = 'Fliegen';
-        }
-        if (string.includes('Poison')) {
-            span.innerHTML = 'Gift';
-        }
-        if (string.includes('Ghost')) {
-            span.innerHTML = 'Geist';
-        }
-        if (string.includes('Dragon')) {
-            span.innerHTML = 'Drache';
-        }
-        if (string.includes('Electric')) {
-            span.innerHTML = 'Elektrizität';
-        }
-        if (string.includes('Fighting')) {
-            span.innerHTML = 'Kampf';
-        }
-        if (string.includes('Fairy')) {
-            span.innerHTML = 'Fee';
-        }
-        if (string.includes('Ice')) {
-            span.innerHTML = 'Eis';
-        }
-        if (string.includes('Rock')) {
-            span.innerHTML = 'Stein';
-        }
-        if (string.includes('Psychic')) {
-            span.innerHTML = 'Psycho';
-        }
-        if (string.includes('Normal')) {
-            span.innerHTML = 'Normal';
-        }
     }
 }
 
