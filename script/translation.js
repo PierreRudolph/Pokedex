@@ -11,25 +11,36 @@ function setTranslationNum() {
     if (translationNum == 0) {
         translationNum++;
         saveNumValue('translation-num', translationNum);
-        translateTextToGerman();
-        translateBigCardToGerman();
+        translateToGerman();
     } else {
         translationNum--;
         saveNumValue('translation-num', translationNum);
-        translateTextToEnglish();
-        translateBigCardToEnglish();
+        translateToEnglish();
     }
+    restartShowingContent();
+}
+
+
+function translateToGerman() {
+    translateTextToGerman();
+    translateBigCardToGerman();
+}
+
+
+function translateToEnglish() {
+    translateTextToEnglish();
+    translateBigCardToEnglish();
+}
+
+
+function restartShowingContent() {
     clearPokedex();
     clearPokedexFound();
-
     getPokemonJSON('offset');
-    console.log(checkIfBigCardIsShowing());
     if (!checkIfBigCardIsShowing()) {
         renderBigCard();
     }
-
 }
-
 
 function checkIfBigCardIsShowing() {
     let bigCardDiv = document.getElementById('big-card-div');
