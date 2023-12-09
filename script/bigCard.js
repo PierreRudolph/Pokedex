@@ -5,7 +5,10 @@ async function getPokemonByIdBigCard(id) {
     let response = await fetch(url);
     currentBigCardPokemon = await response.json();
     renderBigCard();
-
+    if (translationNum == 1) {
+        translateToGerman();
+        translateTypesIfSet();
+    }
 }
 
 
@@ -30,20 +33,19 @@ function renderBigCard() {
     getBarWidth();
     getBigCardTypes();
     getBigCardAbilities();
-    translateTypesIfSet();
-    // Make the DIV element draggable:
+    //translateTypesIfSet();
     dragElement(document.getElementById("big-card-div"));
     changeMouseStyle();
 }
 
 
-function translateTextIfSet() {
-    if (translatenNum == 1) {
-        translateBigCardToGerman();
-    } else if (translatenNum == 0) {
-        translateBigCardToEnglish();
-    }
-}
+// function translateTextIfSet() {
+//     if (translatenNum == 1) {
+//         translateBigCardToGerman();
+//     } else if (translatenNum == 0) {
+//         translateBigCardToEnglish();
+//     }
+// }
 
 
 function bigCardinnerHTMLInfo() {
@@ -117,11 +119,21 @@ function getBigCardAbilities() {
     abilitiesDiv.innerHTML = '';
     for (let i = 0; i < abilities.length; i++) {
         let ability = currentBigCardPokemon['abilities'][i]['ability']['name'];
+        if (translationNum == 1) {
+            foundAbility = searchAbilitiesTranslations(ability);
+            if (foundAbility) {
+                ability = foundAbility;
+            } else {
+
+            }
+        }
         abilitiesDiv.innerHTML += /*html*/`
         <div class="type-div"><span>${ability}</span></div>
         `;
     }
 }
+
+
 
 
 function getBigCardTypes() {

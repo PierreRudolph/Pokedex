@@ -88,7 +88,7 @@ function translateBigCardToEnglish() {
     weight.innerHTML = 'Weight';
     types.innerHTML = 'Types';
     baseExp.innerHTML = 'BASE EXPIRIENCE';
-    abilities2.innerHTML = 'Fähigkeiten';
+    abilities2.innerHTML = 'Abilities';
 }
 
 
@@ -156,6 +156,24 @@ function translateNameIfSetAndAvaiable(pokeId, pokeName) {
     return pokeName;
 }
 
+function searchAbilitiesTranslations(abilityToSearchFor) {
+    for (let i = 0; i < abilitiesTranslations.length; i++) {
+        const foundAbility = abilitiesTranslations[i].english;
+        const foundAbilityGerman = abilitiesTranslations[i].german
+        abilityToSearchFor = upperCaseFirstLetter(abilityToSearchFor);
+
+        if (foundAbility == abilityToSearchFor) {
+            console.log('foundTranslation', foundAbilityGerman)
+            return foundAbilityGerman;
+        } else if (i > abilitiesTranslations.length) {
+            console.log('Could not find Translation of searched Ability', abilityToSearchFor);
+            return abilityToSearchFor;
+        } else if (!foundAbility) {
+            console.log('could not find ability', abilityToSearchFor);
+            return 'notFind'
+        }
+    }
+}
 
 function translateTypesIfSet() {
     if (translationNum == 0) {

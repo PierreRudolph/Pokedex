@@ -26,6 +26,7 @@ async function loadPokemonJSON(pokeList) {
         let pokeUrl = List[i]['url'];
         let response = await fetch(pokeUrl);
         currentPokemon = await response.json();
+
         renderCard('pokedex');
     }
     lastCardId = currentPokemon['id'];
@@ -37,9 +38,12 @@ async function loadPokemonJSON(pokeList) {
 
 function searchPokemonById() {
     let pokeId = document.getElementById('search-input');
+
     if (pokeId.value >= 1) {
         playAnySound('click-high');
         getPokemonById(pokeId.value);
+        showPokemonFoundDiv();
+        setDexDivFoundDivPadding();
         setTimeout(function () {
             pokeId.value = '';
             currentPokemon = '';
@@ -49,12 +53,23 @@ function searchPokemonById() {
     }
 }
 
+function showPokemonFoundDiv() {
+    let pokeFoundDiv = document.getElementById('pokedex-found-div');
+    pokeFoundDiv.classList.remove('d-none');
+}
+
+function setDexDivFoundDivPadding() {
+    let pokeFoundDiv = document.getElementById('pokedex-found-div');
+    let pokedex = document.getElementById('pokedex');
+    pokeFoundDiv.style.paddingTop = '255px';
+    pokedex.style.paddingTop = '15px';
+}
 
 async function getPokemonById(id) {
-    let pokeFoundDiv = document.getElementById('pokedex-found-div');
+
     let url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     let response = await fetch(url);
-    pokeFoundDiv.classList.remove('d-none');
+
     currentPokemon = await response.json();
     renderCard('pokedex-found');
     translateTypesIfSet();
@@ -76,6 +91,8 @@ function renderCard(divName) {
     let pokeImg = currentPokemon['sprites']['other']['official-artwork']['front_default'];
     let pokeId = currentPokemon['id'];
     let pokeName = createPokemonName(currentPokemon['name'], pokeId);
+    //let pokeName=currentPokemon['names']['5'].name
+
     let bgClassName = currentPokemon['types'][0]['type']['name'];
     if (!pokeImg) {
         return;
