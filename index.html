@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
@@ -21,18 +20,14 @@
     <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous"></script>
+    <script src="script/bootstrap-min.js"></script>
     <script src="script/script.js"></script>
     <script src="script/abilitiesTranslations.js"></script>
     <script src="script/bigCard.js"></script>
     <script src="script/pokeNamesDe.js"></script>
     <script src="script/translation.js"></script>
 
-
+    <link rel="stylesheet" href="style/bootstrap-min.css">
     <link rel="stylesheet" href="style/bigCard.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/fonts.css">
@@ -43,7 +38,7 @@
     <title>Pokedex</title>
 </head>
 
-<body id="body" onload="getPokemonJSON('offset')">
+<body id="body" onload="getPokemonJSON('offset');includeHTML();">
 
     <div class="body-div">
         <div class="header">
@@ -169,13 +164,14 @@
             </div>
         </div>
 
-
-
         <div id="pokedex-found-div" class="poke-found-div d-none">
             <div class="mt-2 text-light text-center">
                 <h5 id="poke-found-text" class="poke-found-headline">Gefundene Pokemon:</h5>
+
+
             </div>
             <div id="pokedex-found" class="pokedex-found"></div>
+
         </div>
 
         <div id="pokedex" class="pokedex">
@@ -203,338 +199,15 @@
         </div>
 
         <div id="impressum" class="shadow-screen-impressum d-none">
-            <div class="impressum">
-                <div class="d-flex justify-content-end">
-                    <img class="close-button" src="img/pokeball-color.png" onclick="addDisplayNone('impressum')">
-                </div>
-                <h1>Impressum</h1>
-
-                <h2>Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
-                <p>Pierre Rudolph Lettner<br />
-                    Grottenberg 2<br />
-                    86497 Horgau
-                </p>
-
-                <h2>Kontakt</h2>
-                <p>Telefon: 015170914951<br />
-                    E-Mail: PLettner@hotmail.de
-                </p>
-
-                <div class="attribution-div">
-                    <div>
-                        Pokeball von <a
-                            href="https://pixabay.com/de/users/alanyadk-1919646/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1536847">
-                            Alanyadk</a> auf <a
-                            href="https://pixabay.com/de//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1536847">Pixabay</a>
-                    </div>
-                    <div>
-                        <a target="_blank" href="https://icons8.com/icon/oMEqQ7iOm583/pokedex">
-                            Pokedex</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
-                    </div>
-                    <div>
-                        Flaggen von <a
-                            href="https://pixabay.com/de/users/sinisamaric1-3044277/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1722052">Sinisa
-                            Maric</a> auf <a
-                            href="https://pixabay.com/de//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1722052">Pixabay</a>
-                    </div>
-                    <div>
-                        Hintergrundmusik von <a href="https://www.looperman.com/loops?mid=dezluvv">Dezluvv</a> auf
-                        <a href="https://www.looperman.com/">Looperman</a>
-                    </div>
-                    <div>
-                        Pokemon Daten von <a href="https://pokeapi.co/">PokeApi.com</a>
-                    </div>
-                    <div>
-                        Pokemon Namen Deutsch von <a href="https://github.com/sindresorhus/pokemon">Sindresorhus</a>
-                    </div>
-                </div>
-                <p>Quelle: <a href="https://www.e-recht24.de">https://www.e-recht24.de</a></p>
-            </div>
+            <div w3-include-html="templates/imprint.html" class="impressum"></div>
         </div>
 
         <div id="privacy-policy" class="shadow-screen-privacy d-none">
-
-            <div class="privacy-policy">
-                <div class="close-button-div">
-                    <img class="close-button" src="img/pokeball-color.png" onclick="addDisplayNone('privacy-policy')">
-                </div>
-                <h1>Datenschutzerklärung</h1>
-                <p>Verantwortlicher im Sinne der Datenschutzgesetze, insbesondere der EU-Datenschutzgrundverordnung
-                    (DSGVO),
-                    ist:</p>
-                <p>Pierre Lettner</p>
-                <h2>Ihre Betroffenenrechte</h2>
-                <p>Unter den angegebenen Kontaktdaten unseres Datenschutzbeauftragten können Sie jederzeit folgende
-                    Rechte
-                    ausüben:</p>
-                <ul>
-                    <li>Auskunft über Ihre bei uns gespeicherten Daten und deren Verarbeitung (Art. 15 DSGVO),</li>
-                    <li>Berichtigung unrichtiger personenbezogener Daten (Art. 16 DSGVO),</li>
-                    <li>Löschung Ihrer bei uns gespeicherten Daten (Art. 17 DSGVO),</li>
-                    <li>Einschränkung der Datenverarbeitung, sofern wir Ihre Daten aufgrund gesetzlicher Pflichten
-                        noch
-                        nicht
-                        löschen dürfen (Art. 18 DSGVO),</li>
-                    <li>Widerspruch gegen die Verarbeitung Ihrer Daten bei uns (Art. 21 DSGVO) und</li>
-                    <li>Datenübertragbarkeit, sofern Sie in die Datenverarbeitung eingewilligt haben oder einen
-                        Vertrag
-                        mit
-                        uns
-                        abgeschlossen haben (Art. 20 DSGVO).</li>
-                </ul>
-                <p>Sofern Sie uns eine Einwilligung erteilt haben, können Sie diese jederzeit mit Wirkung für die
-                    Zukunft
-                    widerrufen.</p>
-                <p>Sie können sich jederzeit mit einer Beschwerde an eine Aufsichtsbehörde wenden, z. B. an die
-                    zuständige
-                    Aufsichtsbehörde des Bundeslands Ihres Wohnsitzes oder an die für uns als verantwortliche Stelle
-                    zuständige
-                    Behörde.</p>
-                <p>Eine Liste der Aufsichtsbehörden (für den nichtöffentlichen Bereich) mit Anschrift finden Sie
-                    unter:
-                    <a href="https://www.bfdi.bund.de/DE/Service/Anschriften/Laender/Laender-node.html" target="_blank"
-                        rel="noopener nofollow">https://www.bfdi.bund.de/DE/Service/Anschriften/Laender/Laender-node.html</a>.
-                </p>
-                <p></p>
-                <h2>Erfassung allgemeiner Informationen beim Besuch unserer Website</h2>
-                <h3>Art und Zweck der Verarbeitung:</h3>
-                <p>Wenn Sie auf unsere Website zugreifen, d.h., wenn Sie sich nicht registrieren oder anderweitig
-                    Informationen
-                    übermitteln, werden automatisch Informationen allgemeiner Natur erfasst. Diese Informationen
-                    (Server-Logfiles) beinhalten etwa die Art des Webbrowsers, das verwendete Betriebssystem, den
-                    Domainnamen
-                    Ihres Internet-Service-Providers, Ihre IP-Adresse und ähnliches. </p>
-                <p>Sie werden insbesondere zu folgenden Zwecken verarbeitet:</p>
-                <ul>
-                    <li>Sicherstellung eines problemlosen Verbindungsaufbaus der Website,</li>
-                    <li>Sicherstellung einer reibungslosen Nutzung unserer Website,</li>
-                    <li>Auswertung der Systemsicherheit und -stabilität sowie</li>
-                    <li>zur Optimierung unserer Website.</li>
-                </ul>
-                <p>Wir verwenden Ihre Daten nicht, um Rückschlüsse auf Ihre Person zu ziehen. Informationen dieser
-                    Art
-                    werden
-                    von uns ggfs. anonymisiert statistisch ausgewertet, um unseren Internetauftritt und die
-                    dahinterstehende
-                    Technik zu optimieren. </p>
-                <h3>Rechtsgrundlage und berechtigtes Interesse:</h3>
-                <p>Die Verarbeitung erfolgt gemäß Art. 6 Abs. 1 lit. f DSGVO auf Basis unseres berechtigten
-                    Interesses
-                    an
-                    der
-                    Verbesserung der Stabilität und Funktionalität unserer Website.</p>
-                <h3>Empfänger:</h3>
-                <p>Empfänger der Daten sind ggf. technische Dienstleister, die für den Betrieb und die Wartung
-                    unserer
-                    Webseite
-                    als Auftragsverarbeiter tätig werden.</p>
-                <p></p>
-                <h3>Speicherdauer:</h3>
-                <p>Die Daten werden gelöscht, sobald diese für den Zweck der Erhebung nicht mehr erforderlich sind.
-                    Dies
-                    ist
-                    für
-                    die Daten, die der Bereitstellung der Website dienen, grundsätzlich der Fall, wenn die jeweilige
-                    Sitzung
-                    beendet ist. </p>
-                <p> Im Falle der Speicherung der Daten in Logfiles ist dies nach spätestens 14 Tagen der Fall. Eine
-                    darüberhinausgehende Speicherung ist möglich. In diesem Fall werden die IP-Adressen der Nutzer
-                    anonymisiert,
-                    sodass eine Zuordnung des aufrufenden Clients nicht mehr möglich ist.</p>
-                <p></p>
-                <h3>Bereitstellung vorgeschrieben oder erforderlich:</h3>
-                <p>Die Bereitstellung der vorgenannten personenbezogenen Daten ist weder gesetzlich noch vertraglich
-                    vorgeschrieben. Ohne die IP-Adresse ist jedoch der Dienst und die Funktionsfähigkeit unserer
-                    Website
-                    nicht
-                    gewährleistet. Zudem können einzelne Dienste und Services nicht verfügbar oder eingeschränkt
-                    sein.
-                    Aus
-                    diesem Grund ist ein Widerspruch ausgeschlossen. </p>
-                <p></p>
-                <h2>SSL-Verschlüsselung</h2>
-                <p>Um die Sicherheit Ihrer Daten bei der Übertragung zu schützen, verwenden wir dem aktuellen Stand
-                    der
-                    Technik
-                    entsprechende Verschlüsselungsverfahren (z. B. SSL) über HTTPS.</p>
-                <p></p>
-                <hr>
-                <h2>Information über Ihr Widerspruchsrecht nach Art. 21 DSGVO</h2>
-                <h3>Einzelfallbezogenes Widerspruchsrecht</h3>
-                <p>Sie haben das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit
-                    gegen
-                    die
-                    Verarbeitung Sie betreffender personenbezogener Daten, die aufgrund Art. 6 Abs. 1 lit. f DSGVO
-                    (Datenverarbeitung auf der Grundlage einer Interessenabwägung) erfolgt, Widerspruch einzulegen;
-                    dies
-                    gilt
-                    auch für ein auf diese Bestimmung gestütztes Profiling im Sinne von Art. 4 Nr. 4 DSGVO.</p>
-                <p>Legen Sie Widerspruch ein, werden wir Ihre personenbezogenen Daten nicht mehr verarbeiten, es sei
-                    denn,
-                    wir
-                    können zwingende schutzwürdige Gründe für die Verarbeitung nachweisen, die Ihre Interessen,
-                    Rechte
-                    und
-                    Freiheiten überwiegen, oder die Verarbeitung dient der Geltendmachung, Ausübung oder
-                    Verteidigung
-                    von
-                    Rechtsansprüchen.</p>
-                <h3>Empfänger eines Widerspruchs</h3>
-                <p></p>
-                <hr>
-                <h2>Änderung unserer Datenschutzbestimmungen</h2>
-                <p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen
-                    rechtlichen
-                    Anforderungen entspricht oder um Änderungen unserer Leistungen in der Datenschutzerklärung
-                    umzusetzen,
-                    z.B.
-                    bei der Einführung neuer Services. Für Ihren erneuten Besuch gilt dann die neue
-                    Datenschutzerklärung.
-                </p>
-                <h2>Fragen an den Datenschutzbeauftragten</h2>
-                <p>Wenn Sie Fragen zum Datenschutz haben, schreiben Sie uns bitte eine E-Mail oder wenden Sie sich
-                    direkt an
-                    die
-                    für den Datenschutz verantwortliche Person in unserer Organisation:</p>
-                <p></p>
-                <p><em>Die Datenschutzerklärung wurde mithilfe der activeMind AG erstellt, den Experten für <a
-                            href="https://www.activemind.de/datenschutz/datenschutzbeauftragter/" target="_blank"
-                            rel="noopener">externe Datenschutzbeauftragte</a> (Version #2020-09-30).</em></p>
-                <div class="close-button-div">
-                    <a href="#" onclick="addDisplayNone('privacy-policy')">schließen</a>
-                </div>
-            </div>
+            <div w3-include-html="templates/data.html" class="privacy-policy"></div>
         </div>
 
         <div id="big-card-div" class="shadow-screen-big-card d-none">
-
-            <div class="position-relative">
-                <div class="close-big-card-img">
-                    <a id="poke-load-img" onclick="addDisplayNone('big-card-div')"><img src="img/pokeball-color.png"
-                            class="header-imgs"></a>
-                </div>
-                <div class="card big-card" id="big-card">
-
-                    <nav id="header-2" class="navbar bg-body-tertiary ">
-                        <div id="header-1" class="container-fluid ">
-                            <span class="navbar-brand big-card-headline mb-0 h1" id="big-card-name"></span>
-                            <span class="navbar-brand big-card-headline mb-0 h1" id="big-card-id"></span>
-                        </div>
-                    </nav>
-
-                    <div class="big-card-img-div" onmouseover="getDreamWorldImg()" onmouseout="getNormalImg()">
-                        <img src="img/big-shadow.png" class="poke-shadow-big">
-                        <div style="z-index:1">
-                            <img id="big-card-img" src="" class="big-card-img" alt="...">
-                        </div>
-                    </div>
-                    <div class="card-body big-card-body">
-
-                        <ul class="nav nav-tabs big-card-nav" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="base-stats-text" data-bs-toggle="tab"
-                                    data-bs-target="#home-tab-pane" type="button" role="tab"
-                                    aria-controls="home-tab-pane" aria-selected="true">Base stats</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
-                                    data-bs-target="#profile-tab-pane" type="button" role="tab"
-                                    aria-controls="profile-tab-pane" aria-selected="false">Info</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="abilities-text" data-bs-toggle="tab"
-                                    data-bs-target="#contact-tab-pane" type="button" role="tab"
-                                    aria-controls="contact-tab-pane" aria-selected="false">Abilities</button>
-                            </li>
-                        </ul>
-
-                        <div class="tab-content big-card-tab-bar" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
-                                aria-labelledby="home-tab" tabindex="0">
-                                <div class="stats-content-div">
-                                    <div class="stats-name-div">
-                                        <div><span id="hp-text">HP</span></div>
-                                        <div><span id="attack-text">ATTACK</span></div>
-                                        <div><span id="defense-text">DEFENSE</span></div>
-                                        <div><span id="special-attack-text">SPECIAL-ATTACK</span></div>
-                                        <div><span id="special-defense-text">SPECIAL-DEFENSE</span></div>
-                                        <div><span id="speed-text">SPEED</span></div>
-                                    </div>
-
-                                    <div class="stats-div">
-                                        <div class="stats-num-div">
-                                            <div class="base-stats-num"><span id="stat-0"></span></div>
-                                            <div class="base-stats-num"><span id="stat-1"></span></div>
-                                            <div class="base-stats-num"><span id="stat-2"></span></div>
-                                            <div class="base-stats-num"><span id="stat-3"></span></div>
-                                            <div class="base-stats-num"><span id="stat-4"></span></div>
-                                            <div class="base-stats-num"><span id="stat-5"></span></div>
-                                        </div>
-                                        <div class="stats-bar-div">
-                                            <div class="progress" role="progressbar" aria-label="Basic example">
-                                                <div id="stat-bar-0" class="progress-bar"></div>
-                                            </div>
-                                            <div class="progress" role="progressbar" aria-label="Basic example">
-                                                <div id="stat-bar-1" class="progress-bar"></div>
-                                            </div>
-                                            <div class="progress" role="progressbar" aria-label="Basic example">
-                                                <div id="stat-bar-2" class="progress-bar"></div>
-                                            </div>
-                                            <div class="progress" role="progressbar" aria-label="Basic example">
-                                                <div id="stat-bar-3" class="progress-bar"></div>
-                                            </div>
-                                            <div class="progress" role="progressbar" aria-label="Basic example">
-                                                <div id="stat-bar-4" class="progress-bar"></div>
-                                            </div>
-                                            <div class="progress" role="progressbar" aria-label="Basic example">
-                                                <div id="stat-bar-5" class="progress-bar"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
-                                aria-labelledby="profile-tab" tabindex="0">
-                                <div class="tab-content-div">
-                                    <div class="info-div">
-                                        <div class="height-weight-div">
-                                            <div><span id="height-text">Height:</span></div>
-                                            <div><span id="height-span"></span></div>
-                                        </div>
-
-                                        <div class="height-weight-div">
-                                            <div><span id="weight-text">Weight:</span></div>
-                                            <div><span id="weight-span"></span></div>
-
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <div><span id="types-text">Types:</span></div>
-                                        <div class="big-card-types-div" id="big-card-types">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel"
-                                aria-labelledby="contact-tab" tabindex="0">
-                                <div class="tab-content-div">
-                                    <div class="expirience-div">
-                                        <div><span id="base-exp-text">Base Expirience:</span></div>
-                                        <div class="expirience-number-div"><span id="expirience-span"></span></div>
-                                    </div>
-                                    <div class="abilities-outer-div">
-                                        <div><span id="abilities2-text">Abilities:</span></div>
-                                        <div class="abilities-div" id="abilities-div">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div w3-include-html="templates/big-card.html" class="position-relative"></div>
         </div>
     </div>
 

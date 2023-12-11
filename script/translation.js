@@ -146,17 +146,6 @@ function getHTMLElementsText() {
 }
 
 
-function translateNameIfSetAndAvaiable(pokeId, pokeName) {
-    if (translationNum == 0) {
-        return pokeName;
-    }
-    if (pokeNamesDe[pokeId - 1]) {
-        pokeName = pokeNamesDe[pokeId - 1];
-    }
-    return pokeName;
-}
-
-
 function searchAbilitiesTranslations(abilityToSearchFor) {
     abilityToSearchFor = prepareAbilityName(abilityToSearchFor);
     for (let i = 0; i < abilitiesTranslations.length; i++) {

@@ -1,0 +1,121 @@
+<div class="close-big-card-img">
+    <a id="poke-load-img" onclick="addDisplayNone('big-card-div')"><img src="img/pokeball-color.png"
+            class="header-imgs"></a>
+</div>
+<div class="card big-card" id="big-card">
+
+    <nav id="header-2" class="navbar bg-body-tertiary ">
+        <div id="header-1" class="container-fluid ">
+            <span class="navbar-brand big-card-headline mb-0 h1" id="big-card-name"></span>
+            <span class="navbar-brand big-card-headline mb-0 h1" id="big-card-id"></span>
+        </div>
+    </nav>
+
+    <div class="big-card-img-div" onmouseover="getDreamWorldImg()" onmouseout="getNormalImg()">
+        <img src="img/big-shadow.png" class="poke-shadow-big">
+        <div style="z-index:1">
+            <img id="big-card-img" src="" class="big-card-img" alt="...">
+        </div>
+    </div>
+    <div class="card-body big-card-body">
+
+        <ul class="nav nav-tabs big-card-nav" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="base-stats-text" data-bs-toggle="tab"
+                    data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
+                    aria-selected="true">Base stats</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+                    type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Info</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="abilities-text" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
+                    type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Abilities</button>
+            </li>
+        </ul>
+
+        <div class="tab-content big-card-tab-bar" id="myTabContent">
+            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                tabindex="0">
+                <div class="stats-content-div">
+                    <div class="stats-name-div">
+                        <div><span id="hp-text">HP</span></div>
+                        <div><span id="attack-text">ATTACK</span></div>
+                        <div><span id="defense-text">DEFENSE</span></div>
+                        <div><span id="special-attack-text">SPECIAL-ATTACK</span></div>
+                        <div><span id="special-defense-text">SPECIAL-DEFENSE</span></div>
+                        <div><span id="speed-text">SPEED</span></div>
+                    </div>
+
+                    <div class="stats-div">
+                        <div class="stats-num-div">
+                            <div class="base-stats-num"><span id="stat-0"></span></div>
+                            <div class="base-stats-num"><span id="stat-1"></span></div>
+                            <div class="base-stats-num"><span id="stat-2"></span></div>
+                            <div class="base-stats-num"><span id="stat-3"></span></div>
+                            <div class="base-stats-num"><span id="stat-4"></span></div>
+                            <div class="base-stats-num"><span id="stat-5"></span></div>
+                        </div>
+                        <div class="stats-bar-div">
+                            <div class="progress" role="progressbar" aria-label="Basic example">
+                                <div id="stat-bar-0" class="progress-bar"></div>
+                            </div>
+                            <div class="progress" role="progressbar" aria-label="Basic example">
+                                <div id="stat-bar-1" class="progress-bar"></div>
+                            </div>
+                            <div class="progress" role="progressbar" aria-label="Basic example">
+                                <div id="stat-bar-2" class="progress-bar"></div>
+                            </div>
+                            <div class="progress" role="progressbar" aria-label="Basic example">
+                                <div id="stat-bar-3" class="progress-bar"></div>
+                            </div>
+                            <div class="progress" role="progressbar" aria-label="Basic example">
+                                <div id="stat-bar-4" class="progress-bar"></div>
+                            </div>
+                            <div class="progress" role="progressbar" aria-label="Basic example">
+                                <div id="stat-bar-5" class="progress-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                <div class="tab-content-div">
+                    <div class="info-div">
+                        <div class="height-weight-div">
+                            <div><span id="height-text">Height:</span></div>
+                            <div><span id="height-span"></span></div>
+                        </div>
+
+                        <div class="height-weight-div">
+                            <div><span id="weight-text">Weight:</span></div>
+                            <div><span id="weight-span"></span></div>
+
+                        </div>
+                    </div>
+
+                    <div>
+                        <div><span id="types-text">Types:</span></div>
+                        <div class="big-card-types-div" id="big-card-types">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+                <div class="tab-content-div">
+                    <div class="expirience-div">
+                        <div><span id="base-exp-text">Base Expirience:</span></div>
+                        <div class="expirience-number-div"><span id="expirience-span"></span></div>
+                    </div>
+                    <div class="abilities-outer-div">
+                        <div><span id="abilities2-text">Abilities:</span></div>
+                        <div class="abilities-div" id="abilities-div">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,6 +4,9 @@ async function getPokemonByIdBigCard(id) {
     let url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     let response = await fetch(url);
     currentBigCardPokemon = await response.json();
+    if (loadPokemonSpecies()) {
+        currentBigCardSpeciesPokemon = await getPokemonSpeciesByIdBigCard(id);
+    }
     renderBigCard();
     if (translationNum == 1) {
         translateToGerman();
@@ -11,6 +14,11 @@ async function getPokemonByIdBigCard(id) {
     }
 }
 
+async function getPokemonSpeciesByIdBigCard(id) {
+    let urlSpecies = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
+    let responseSpecies = await fetch(urlSpecies);
+    return await responseSpecies.json();
+}
 
 function formatNumber(number) {
     let formatedNumber = number.toString();
@@ -74,7 +82,7 @@ function getBigCardIds() {
 
 
 function getBigCardInfo() {
-    pokeName = createPokemonName(currentBigCardPokemon['name'], currentBigCardPokemon['id'])
+    pokeName = getPokeNameBigCard();
     return {
         pokeImg: currentBigCardPokemon['sprites']['other']['official-artwork']['front_default'],
         pokeId: currentBigCardPokemon['id'],
@@ -83,6 +91,18 @@ function getBigCardInfo() {
         weight: formatNumber(currentBigCardPokemon['weight']),
         baseExp: currentBigCardPokemon['base_experience']
     }
+}
+
+
+function getPokeNameBigCard() {
+    let languageId = getLanguageId();
+    let pokeNameBigCard;
+    if (loadPokemonSpecies()) {
+        pokeNameBigCard = currentBigCardSpeciesPokemon['names'][languageId].name;
+    } else {
+        pokeNameBigCard = createPokemonName(currentPokemon['name']);
+    }
+    return pokeNameBigCard;
 }
 
 
@@ -122,7 +142,6 @@ function getBigCardAbilities() {
 
         if (translationNum == 1) {
             foundAbility = searchAbilitiesTranslations(ability);
-            console.log('gefundene ability', foundAbility)
             if (foundAbility) {
                 ability = foundAbility;
             } else {

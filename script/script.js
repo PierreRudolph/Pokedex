@@ -1,4 +1,5 @@
 let currentPokemon;
+let currentPokemonSpecies;
 let pokeLoadNumber = 25;
 let offsetNum = 0;
 let startNum = 0;
@@ -7,6 +8,10 @@ let lastCardId = 0
 let typesDivId = -1;
 let translationNum = 0;
 let currenBigCardPokemon;
+let currentBigCardSpeciesPokemon;
+let foundPokemon = [];
+let foundPokemonLoaded = 0;
+
 
 async function getPokemonJSON(startFrom) {
     getSavedSettings();
@@ -15,24 +20,85 @@ async function getPokemonJSON(startFrom) {
     let listUrl = `https://pokeapi.co/api/v2/pokemon/?offset=${startNum}&limit=${pokeLoadNumber}"`;
     let listResponse = await fetch(listUrl);
     let pokeList = await listResponse.json();
-    loadPokemonJSON(pokeList);
+    let pokeListSpecies;
+    pokeList = pokeList['results'];
+
+    if (loadPokemonSpecies()) {
+        pokeListSpecies = await getPokemonSpeciesJSON(startNum);
+        pokeListSpecies = pokeListSpecies['results'];
+    }
+    loadPokemonJSON(pokeList, pokeListSpecies);
 }
 
 
-async function loadPokemonJSON(pokeList) {
+async function getPokemonSpeciesJSON(startNum) {
+    let listUrlSpecies = `https://pokeapi.co/api/v2/pokemon-species/?offset=${startNum}&limit=${pokeLoadNumber}"`;
+    let listTwoResponse = await fetch(listUrlSpecies);
+    return await listTwoResponse.json();
+}
+
+
+async function loadPokemonJSON(pokeList, pokeListSpecies) {
     onOrOffAllLinks('off');
-    let List = pokeList['results'];
-    for (let i = 0; i < List.length; i++) {
-        let pokeUrl = List[i]['url'];
+
+    for (let i = 0; i < pokeList.length; i++) {
+        let pokeUrl = pokeList[i]['url'];
         let response = await fetch(pokeUrl);
         currentPokemon = await response.json();
-
+        if (loadPokemonSpecies()) {
+            currentPokemonSpecies = await loadPokemonSpeciesJSON(pokeListSpecies, i);
+        }
         renderCard('pokedex');
     }
     lastCardId = currentPokemon['id'];
     translateTypesIfSet();
     onOrOffAllLinks('on');
     playAnySound('click-low');
+    if (foundPokemonLoaded == 0) {
+        loadFoundPokemon();
+        foundPokemonLoaded = 1;
+    }
+}
+
+
+async function loadPokemonSpeciesJSON(pokeListSpecies, i) {
+    let pokeSpeciesUrl = pokeListSpecies[i]['url'];
+    let responseSpecies = await fetch(pokeSpeciesUrl);
+    return await responseSpecies.json();
+}
+
+
+function loadFoundPokemon() {
+    getSavedFoundPokemon();
+    if (foundPokemon.length > 0) {
+        for (let i = 0; i < foundPokemon.length; i++) {
+            currentPokemon = foundPokemon[i];
+            renderCard('pokedex-found')
+        }
+    }
+}
+
+
+function getSavedFoundPokemon() {
+    let savFouPoke = localStorage.getItem(`found-pokemon`);
+    let savFouPokeToArray = JSON.parse(savFouPoke);
+
+    if (savFouPokeToArray) {
+        for (let i = 0; i < savFouPokeToArray.length; i++) {
+            getPokemonById(savFouPokeToArray[i]);
+            setTimeout(function () {
+                currentPokemon = '';
+            }, 500);
+        }
+        showPokemonFoundDiv();
+        setDexDivFoundDivPadding();
+    }
+}
+
+
+function saveFoundPokemon() {
+    foundPokemon.push(currentPokemon['id']);
+    localStorage.setItem('found-pokemon', JSON.stringify(foundPokemon));
 }
 
 
@@ -53,21 +119,27 @@ function searchPokemonById() {
     }
 }
 
+
 function showPokemonFoundDiv() {
     let pokeFoundDiv = document.getElementById('pokedex-found-div');
     pokeFoundDiv.classList.remove('d-none');
 }
+
 
 function setDexDivFoundDivPadding() {
     let pokedex = document.getElementById('pokedex');
     pokedex.classList.add('pokedex-padding-top-if-found-div-showing');
 }
 
+
 async function getPokemonById(id) {
     let url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+    let urlSpecies = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
     let response = await fetch(url);
-
+    let responseSpecies = await fetch(urlSpecies);
     currentPokemon = await response.json();
+    currentPokemonSpecies = await responseSpecies.json();
+    saveFoundPokemon();
     renderCard('pokedex-found');
     translateTypesIfSet();
 }
@@ -85,10 +157,9 @@ function loadMore() {
 
 function renderCard(divName) {
     let pokeDiv = document.getElementById(`${divName}`);
+    let pokeName = getPokeName();
     let pokeImg = currentPokemon['sprites']['other']['official-artwork']['front_default'];
     let pokeId = currentPokemon['id'];
-    let pokeName = createPokemonName(currentPokemon['name'], pokeId);
-    //let pokeName=currentPokemon['names']['5'].name
 
     let bgClassName = currentPokemon['types'][0]['type']['name'];
     if (!pokeImg) {
@@ -100,9 +171,15 @@ function renderCard(divName) {
 }
 
 
-function createPokemonName(pokeName, pokeId) {
-    pokeName = upperCaseFirstLetter(pokeName);
-    return translateNameIfSetAndAvaiable(pokeId, pokeName);
+function getPokeName() {
+    let languageId = getLanguageId();
+    let pokeName;
+    if (loadPokemonSpecies()) {
+        pokeName = currentPokemonSpecies['names'][languageId].name;
+    } else {
+        pokeName = createPokemonName(currentPokemon['name']);
+    }
+    return pokeName;
 }
 
 
@@ -127,6 +204,22 @@ function getCardHTML(pokeImg, pokeId, pokeName, bgClassName) {
                 </div>  
         </div>
 `;
+}
+
+
+function getLanguageId() {
+    let languageId;
+    if (translationNum == 1) {
+        languageId = '5';
+    } else {
+        languageId = '6';
+    }
+    return languageId;
+}
+
+
+function createPokemonName(pokeName) {
+    return pokeName = upperCaseFirstLetter(pokeName);
 }
 
 
@@ -207,6 +300,8 @@ function clearPokedex() {
 function clearPokedexFound() {
     let pokedexFound = document.getElementById('pokedex-found');
     pokedexFound.innerHTML = '';
+    foundPokemon = [];
+    foundPokemonLoaded = 0;
 }
 
 
@@ -246,6 +341,15 @@ function checkStartFrom(startFrom) {
     if (startFrom == 'last-card') {
         startNum = lastCardId;
         return startNum;
+    }
+}
+
+
+function loadPokemonSpecies() {
+    if ((+startNum + +pokeLoadNumber) <= 1017) {
+        return true;
+    } else {
+        return false;
     }
 }
 
@@ -325,4 +429,21 @@ function playAnySound(soundName) {
     sound.volume = 0.7;
     sound.load();
     sound.play();
+}
+
+async function includeHTML() {
+    let includeElements = document.querySelectorAll('[w3-include-html]');
+
+    for (let i = 0; i < includeElements.length; i++) {
+        const element = includeElements[i];
+        file = element.getAttribute("w3-include-html"); // "includes/header.html"
+        let resp = await fetch(file);
+        if (resp.ok) {
+            console.log('responeOK')
+            element.innerHTML = await resp.text();
+        } else {
+            console.log('responeNOTOK')
+            element.innerHTML = 'Page not found';
+        }
+    }
 }

@@ -89,6 +89,7 @@ body {
     align-items: end;
     flex-direction: column;
     justify-content: center;
+    min-width: 347px;
 }
 
 .poke-load-span {
@@ -390,7 +391,7 @@ body {
 }
 
 .privacy-policy {
-    overflow: scroll;
+    overflow-y: auto;
     height: 100%;
     width: 80%;
     font-size: 15px;
