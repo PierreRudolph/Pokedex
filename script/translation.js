@@ -52,7 +52,7 @@ function translateTextToEnglish() {
     const { howMany, fromId, loadGen, findPoke, pokeFound, loadMore, imprint, dataPolicy } = getHTMLElementsText();
     howMany.innerHTML = 'How many Load?:';
     fromId.innerHTML = 'Load from Id#:';
-    loadGen.innerHTML = 'Load Gen.:';
+    loadGen.innerHTML = 'Load Geneneration :';
     findPoke.innerHTML = 'Find Pokemon:';
     pokeFound.innerHTML = 'Pokemon Found:';
     loadMore.innerHTML = 'Load More';
@@ -65,7 +65,7 @@ function translateTextToGerman() {
     const { howMany, fromId, loadGen, findPoke, pokeFound, loadMore, imprint, dataPolicy } = getHTMLElementsText();
     howMany.innerHTML = 'Pokemon Anzeigen:';
     fromId.innerHTML = 'Ab Id# Laden:';
-    loadGen.innerHTML = 'Gen. laden:';
+    loadGen.innerHTML = 'Generation laden:';
     findPoke.innerHTML = 'Pokemon finden:';
     pokeFound.innerHTML = 'Gefundene Pokemon:';
     loadMore.innerHTML = 'Mehr Laden';
@@ -156,24 +156,31 @@ function translateNameIfSetAndAvaiable(pokeId, pokeName) {
     return pokeName;
 }
 
+
 function searchAbilitiesTranslations(abilityToSearchFor) {
+    abilityToSearchFor = prepareAbilityName(abilityToSearchFor);
     for (let i = 0; i < abilitiesTranslations.length; i++) {
         const foundAbility = abilitiesTranslations[i].english;
         const foundAbilityGerman = abilitiesTranslations[i].german
-        abilityToSearchFor = upperCaseFirstLetter(abilityToSearchFor);
 
         if (foundAbility == abilityToSearchFor) {
-            console.log('foundTranslation', foundAbilityGerman)
             return foundAbilityGerman;
         } else if (i > abilitiesTranslations.length) {
             console.log('Could not find Translation of searched Ability', abilityToSearchFor);
             return abilityToSearchFor;
-        } else if (!foundAbility) {
-            console.log('could not find ability', abilityToSearchFor);
-            return 'notFind'
         }
     }
 }
+
+
+function prepareAbilityName(abilityName) {
+    if (abilityName.includes('-')) {
+        return reCreateName(abilityName);
+    } else {
+        return upperCaseFirstLetter(abilityName);
+    }
+}
+
 
 function translateTypesIfSet() {
     if (translationNum == 0) {

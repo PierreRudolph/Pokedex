@@ -59,14 +59,11 @@ function showPokemonFoundDiv() {
 }
 
 function setDexDivFoundDivPadding() {
-    let pokeFoundDiv = document.getElementById('pokedex-found-div');
     let pokedex = document.getElementById('pokedex');
-    pokeFoundDiv.style.paddingTop = '255px';
-    pokedex.style.paddingTop = '15px';
+    pokedex.classList.add('pokedex-padding-top-if-found-div-showing');
 }
 
 async function getPokemonById(id) {
-
     let url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     let response = await fetch(url);
 
@@ -223,7 +220,7 @@ function getPokemonTypes() {
         typesDiv.innerHTML += /*html*/`
             <div class="type-div">
                 <div>    
-                    <span>
+                    <span class="type-span">
                         ${pokeType}
                     </span>
                 </div>
@@ -265,6 +262,16 @@ function onOrOffAllLinks(onOff) {
             link.classList.add('pointer-none');
         }
     }
+}
+
+
+function reCreateName(name) {
+    let splitedAbility;
+    splitedAbility = name.split('-');
+    abilityFirstWord = upperCaseFirstLetter(splitedAbility[0]);
+    abilitySecondWord = upperCaseFirstLetter(splitedAbility[1]);
+    return (abilityFirstWord + ' ' + abilitySecondWord);
+
 }
 
 

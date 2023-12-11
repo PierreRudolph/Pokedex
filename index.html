@@ -32,10 +32,11 @@
     <script src="script/pokeNamesDe.js"></script>
     <script src="script/translation.js"></script>
 
-    <link rel="stylesheet" href="style/@media.css">
+
     <link rel="stylesheet" href="style/bigCard.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/fonts.css">
+    <link rel="stylesheet" href="style/@media.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,31 +47,25 @@
 
     <div class="body-div">
         <div class="header">
-            <div class="text-center text-white">
-                <audio src="sounds/pokemonGo-loop.wav" id="background-music" controls>Hintergrundmusik</audio>
-
+            <div class="text-center text-white mobile-headline">
                 <h1>Pokedex</h1>
             </div>
-            <div class="d-flex justify-content-between wrap-reverse">
-                <div class="header-left">
-                    <div class="poke-load-div mb-3">
+            <div class="d-flex justify-content-between wrap-reverse header-controls">
 
+                <div class="header-left">
+                    <div class="poke-load-div mb-3 mobile">
                         <div class="poke-load-span">
                             <span id="how-many-text">Pokemon Anzeigen:</span>
                         </div>
-
                         <div class="poke-load-input">
                             <input min="1" max="151" type="number" class="form-control " placeholder="menge"
                                 aria-label="number" id="number-input">
-                        </div>
-                        <div>
+
                             <a id="poke-load-img" onclick="setNumberLoadedPokemon()"><img src="img/pokeball-color.png"
                                     class="header-imgs"></a>
                         </div>
                     </div>
-
-                    <div class="poke-offset-div">
-
+                    <div class="poke-offset-div mobile">
                         <div class="poke-load-span">
                             <span id="from-id-text">Ab Id# Laden:</span>
                         </div>
@@ -78,86 +73,92 @@
                         <div class="poke-load-input">
                             <input min="1" max="151" type="number" class="form-control " placeholder="Id#"
                                 aria-label="number" id="offset-input">
-                        </div>
-                        <div>
+
                             <a id="poke-offset-img" onclick="setOffsetNumber()"><img src="img/pokeball-color.png"
                                     class="header-imgs"></a>
                         </div>
-
-                        <div class="dropdown dropdown-center dropdown-div">
-                            <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-button bg-dark"
-                                type="button" data-bs-toggle="dropdown" aria-expanded="false" id="load-gen-text">
-                                Gen. laden
-                            </button>
-                            <ul class="dropdown-menu bg-dark">
-                                <li>
-                                    <h6 class="dropdown-header">Pokemon Generationen</h6>
-                                </li>
-                                <li><a onclick="setOffsetNumber(0)" class="dropdown-item" href="#">
-                                        Ab der Roten und der Blauen Edition
-                                        (1-151)</a>
-                                </li>
-                                <li><a onclick="setOffsetNumber(151)" class="dropdown-item" href="#">
-                                        Ab der Goldenen und Silbernen
-                                        Edition (152-251)</a>
-                                </li>
-                                <li><a onclick="setOffsetNumber(251)" class="dropdown-item" href="#">
-                                        Ab der Rubin- und der
-                                        Saphir-Edition (252-386)</a>
-                                </li>
-
-                                <li><a onclick="setOffsetNumber(286)" class="dropdown-item" href="#">
-                                        Ab der Diamant- und Perl-Edition
-                                        (387-493)</a>
-                                </li>
-                                <li><a onclick="setOffsetNumber(493)" class="dropdown-item" href="#">
-                                        Ab der Schwarzen und der Weißen
-                                        Edition (494-649)</a>
-                                </li>
-                                <li><a onclick="setOffsetNumber(649)" class="dropdown-item" href="#">
-                                        Ab X und Y (650-721)</a>
-                                </li>
-
-                                <li><a onclick="setOffsetNumber(721)" class="dropdown-item" href="#">
-                                        Ab Sonne und Mond (722-802)</a>
-                                </li>
-                                <li><a onclick="setOffsetNumber(802)" class="dropdown-item" href="#">
-                                        Ab Ultrasonne und Ultramond
-                                        (803-807)</a></li>
-                                <li><a onclick="setOffsetNumber(807)" class="dropdown-item" href="#">
-                                        Ab Pokémon Let's Go (808-809)</a>
-                                </li>
-
-                                <li><a onclick="setOffsetNumber(809)" class="dropdown-item" href="#">
-                                        Ab Schwert und Schild (810-898)</a>
-                                </li>
-                                <li><a onclick="setOffsetNumber(898)" class="dropdown-item" href="#">
-                                        Ab Pokémon Legenden: Arceus
-                                        (899-905)</a>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
+                    <div class="dropdown dropdown-center dropdown-div">
+                        <button class="btn btn-sm btn-secondary dropdown-toggle dropdown-button bg-dark" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false" id="load-gen-text">
+                            Generation laden
+                        </button>
+                        <ul class="dropdown-menu bg-dark">
+                            <li>
+                                <h6 class="dropdown-header">Pokemon Generationen (National Index)</h6>
+                            </li>
+                            <li><a onclick="setOffsetNumber(0)" class="dropdown-item" href="#">
+                                    Ab der Roten und der Blauen Edition
+                                    (1-151)</a>
+                            </li>
+                            <li><a onclick="setOffsetNumber(151)" class="dropdown-item" href="#">
+                                    Ab der Goldenen und Silbernen
+                                    Edition (152-251)</a>
+                            </li>
+                            <li><a onclick="setOffsetNumber(251)" class="dropdown-item" href="#">
+                                    Ab der Rubin- und der
+                                    Saphir-Edition (252-386)</a>
+                            </li>
+
+                            <li><a onclick="setOffsetNumber(286)" class="dropdown-item" href="#">
+                                    Ab der Diamant- und Perl-Edition
+                                    (387-493)</a>
+                            </li>
+                            <li><a onclick="setOffsetNumber(493)" class="dropdown-item" href="#">
+                                    Ab der Schwarzen und der Weißen
+                                    Edition (494-649)</a>
+                            </li>
+                            <li><a onclick="setOffsetNumber(649)" class="dropdown-item" href="#">
+                                    Ab X und Y (650-721)</a>
+                            </li>
+
+                            <li><a onclick="setOffsetNumber(721)" class="dropdown-item" href="#">
+                                    Ab Sonne und Mond (722-802)</a>
+                            </li>
+                            <li><a onclick="setOffsetNumber(802)" class="dropdown-item" href="#">
+                                    Ab Ultrasonne und Ultramond
+                                    (803-807)</a></li>
+                            <li><a onclick="setOffsetNumber(807)" class="dropdown-item" href="#">
+                                    Ab Pokémon Let's Go (808-809)</a>
+                            </li>
+
+                            <li><a onclick="setOffsetNumber(809)" class="dropdown-item" href="#">
+                                    Ab Schwert und Schild (810-898)</a>
+                            </li>
+                            <li><a onclick="setOffsetNumber(898)" class="dropdown-item" href="#">
+                                    Ab Pokémon Legenden: Arceus
+                                    (899-905)</a>
+                            </li>
+                            <li><a onclick="setOffsetNumber(905)" class="dropdown-item" href="#">
+                                    Ab Pokémon Legenden: Karmesin und Purpur
+                                    (906-1017)</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="text-center text-white headline">
+                    <h1>Pokedex</h1>
                 </div>
 
                 <div class="poke-search-div">
 
-                    <div class="mb-3">
+                    <div class="audio-translation-div mb-3 mobile">
+                        <audio src="sounds/pokemonGo-loop.wav" id="background-music" controlsList="nodownload"
+                            controls>Hintergrundmusik</audio>
+
                         <a onclick="setTranslationNum()"><img id="flag-img" class="flag-icons"
                                 src="img/eng-flag-icon.png"></a>
                     </div>
                     <div class="d-flex mobile">
-                        <div class="poke-search-span">
+                        <div class="poke-search-span d-flex align-items-center">
                             <span id="find-text">Pokemon finden:</span>
                         </div>
-
                         <div class="d-flex align-items-center">
-
                             <div class="poke-search-input">
                                 <input type="number" min="1" max="905" class="form-control" placeholder="Id#(1-905)"
                                     id="search-input">
                             </div>
-
                             <div>
                                 <a id="pokedex-img" onclick="searchPokemonById()"><img src="img/pokedex.png"
                                         class="header-imgs"></a>
@@ -168,14 +169,16 @@
             </div>
         </div>
 
-        <div id="pokedex-found-div" class="d-none">
+
+
+        <div id="pokedex-found-div" class="poke-found-div d-none">
             <div class="mt-2 text-light text-center">
-                <h5 id="poke-found-text">Gefundene Pokemon:</h5>
+                <h5 id="poke-found-text" class="poke-found-headline">Gefundene Pokemon:</h5>
             </div>
-            <div id="pokedex-found"></div>
+            <div id="pokedex-found" class="pokedex-found"></div>
         </div>
 
-        <div id="pokedex">
+        <div id="pokedex" class="pokedex">
 
         </div>
         <div class="load-more-div"><a class="link-secondary" onclick="loadMore()">
@@ -460,14 +463,12 @@
 
                                     <div class="stats-div">
                                         <div class="stats-num-div">
-                                            <div>
-                                                <div class="base-stats-num"><span id="stat-0"></span></div>
-                                                <div class="base-stats-num"><span id="stat-1"></span></div>
-                                                <div class="base-stats-num"><span id="stat-2"></span></div>
-                                                <div class="base-stats-num"><span id="stat-3"></span></div>
-                                                <div class="base-stats-num"><span id="stat-4"></span></div>
-                                                <div class="base-stats-num"><span id="stat-5"></span></div>
-                                            </div>
+                                            <div class="base-stats-num"><span id="stat-0"></span></div>
+                                            <div class="base-stats-num"><span id="stat-1"></span></div>
+                                            <div class="base-stats-num"><span id="stat-2"></span></div>
+                                            <div class="base-stats-num"><span id="stat-3"></span></div>
+                                            <div class="base-stats-num"><span id="stat-4"></span></div>
+                                            <div class="base-stats-num"><span id="stat-5"></span></div>
                                         </div>
                                         <div class="stats-bar-div">
                                             <div class="progress" role="progressbar" aria-label="Basic example">
@@ -510,7 +511,7 @@
 
                                     <div>
                                         <div><span id="types-text">Types:</span></div>
-                                        <div id="big-card-types">
+                                        <div class="big-card-types-div" id="big-card-types">
                                         </div>
                                     </div>
                                 </div>
@@ -520,9 +521,9 @@
                                 <div class="tab-content-div">
                                     <div class="expirience-div">
                                         <div><span id="base-exp-text">Base Expirience:</span></div>
-                                        <div><span id="expirience-span"></span></div>
+                                        <div class="expirience-number-div"><span id="expirience-span"></span></div>
                                     </div>
-                                    <div>
+                                    <div class="abilities-outer-div">
                                         <div><span id="abilities2-text">Abilities:</span></div>
                                         <div class="abilities-div" id="abilities-div">
 

@@ -68,6 +68,7 @@
 }
 
 .stats-content-div {
+    height: 222px;
     display: flex;
     justify-content: space-between;
     padding: 25px;
@@ -75,6 +76,7 @@
 }
 
 .tab-content-div {
+    height: 222px;
     display: flex;
     justify-content: space-around;
     padding: 25px;
@@ -93,6 +95,10 @@
 }
 
 .stats-name-div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     font-family: 'PT', sans-serif;
 }
 
@@ -104,6 +110,10 @@
 }
 
 .stats-num-div {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
     margin-right: 15px;
 }
 
@@ -119,7 +129,7 @@
 .info-div {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     color: white;
 }
 
@@ -129,11 +139,33 @@
     min-width: 165px;
 }
 
+.big-card-types-div {
+    margin-top: 10px;
+}
+
+.big-card-type {
+    margin-top: 7px;
+}
+
+.type-span-big-card {
+    font-size: 17px;
+    font-weight: 500;
+    color: white;
+}
+
 .expirience-div {
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    min-width: 220px;
+    width: 230px;
+    height: 100%;
+}
+
+.expirience-number-div {
+    margin-left: 10px;
+}
+
+.abilities-outer-div {
+    min-width: 140px;
 }
 
 .nav-link {
@@ -144,6 +176,13 @@
 
 .nav-link:hover {
     color: grey !important;
+}
+
+.abilities-div {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 10px;
 }
 
 .abilities-div span {

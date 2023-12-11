@@ -119,13 +119,17 @@ function getBigCardAbilities() {
     abilitiesDiv.innerHTML = '';
     for (let i = 0; i < abilities.length; i++) {
         let ability = currentBigCardPokemon['abilities'][i]['ability']['name'];
+
         if (translationNum == 1) {
             foundAbility = searchAbilitiesTranslations(ability);
+            console.log('gefundene ability', foundAbility)
             if (foundAbility) {
                 ability = foundAbility;
             } else {
-
+                console.log('could not find ability')
             }
+        } else {
+            ability = prepareAbilityName(ability);
         }
         abilitiesDiv.innerHTML += /*html*/`
         <div class="type-div"><span>${ability}</span></div>
@@ -143,10 +147,10 @@ function getBigCardTypes() {
     for (let a = 0; a < pokeTypes.length; a++) {
         let pokeType = currentBigCardPokemon['types'][a]['type']['name'];
         pokeType = upperCaseFirstLetter(pokeType);
-        typesDiv.innerHTML = '';
+        //typesDiv.innerHTML = '';
         typesDiv.innerHTML += /*html*/`
-            <div class="type-div">
-                <span>
+            <div class="type-div big-card-type">
+                <span class=" type-span-big-card">
                     ${pokeType}
                 </span>
             </div>
