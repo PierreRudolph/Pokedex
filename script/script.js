@@ -120,18 +120,6 @@ function searchPokemonById() {
 }
 
 
-function showPokemonFoundDiv() {
-    let pokeFoundDiv = document.getElementById('pokedex-found-div');
-    pokeFoundDiv.classList.remove('d-none');
-}
-
-
-function setDexDivFoundDivPadding() {
-    let pokedex = document.getElementById('pokedex');
-    pokedex.classList.add('pokedex-padding-top-if-found-div-showing');
-}
-
-
 async function getPokemonById(id) {
     let url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     let urlSpecies = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
@@ -297,6 +285,14 @@ function clearPokedex() {
 }
 
 
+function deletePokemonFound() {
+    localStorage.removeItem('found-pokemon');
+    clearPokedexFound();
+    addDisplayNone();
+    removeDexDivFoundDivPadding();
+}
+
+
 function clearPokedexFound() {
     let pokedexFound = document.getElementById('pokedex-found');
     pokedexFound.innerHTML = '';
@@ -313,12 +309,10 @@ function getPokemonTypes() {
         let pokeType = currentPokemon['types'][a]['type']['name'];
         pokeType = upperCaseFirstLetter(pokeType);
         typesDiv.innerHTML += /*html*/`
-            <div class="type-div">
-                <div>    
+            <div class="type-div">    
                     <span class="type-span">
                         ${pokeType}
-                    </span>
-                </div>
+                    </span>            
             </div>
             `;
     }
@@ -351,6 +345,28 @@ function loadPokemonSpecies() {
     } else {
         return false;
     }
+}
+
+
+function showPokemonFoundDiv() {
+    let pokeFoundDiv = document.getElementById('pokedex-found-div');
+    pokeFoundDiv.classList.remove('d-none');
+}
+
+
+function setDexDivFoundDivPadding() {
+    let pokedex = document.getElementById('pokedex');
+    pokedex.classList.add('pokedex-padding-top-if-found-div-showing');
+}
+
+function hidePokemonFoundDiv() {
+    let pokeFoundDiv = document.getElementById('pokedex-found-div');
+    pokeFoundDiv.classList.add('d-none');
+}
+
+function removeDexDivFoundDivPadding() {
+    let pokedex = document.getElementById('pokedex');
+    pokedex.classList.remove('pokedex-padding-top-if-found-div-showing');
 }
 
 
@@ -433,17 +449,20 @@ function playAnySound(soundName) {
 
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
-
     for (let i = 0; i < includeElements.length; i++) {
         const element = includeElements[i];
-        file = element.getAttribute("w3-include-html"); // "includes/header.html"
+        file = element.getAttribute("w3-include-html");
         let resp = await fetch(file);
         if (resp.ok) {
-            console.log('responeOK')
             element.innerHTML = await resp.text();
         } else {
-            console.log('responeNOTOK')
             element.innerHTML = 'Page not found';
         }
     }
+}
+
+function scrollToTop() {
+    window.scrollTo(0, 0);
+    console.log('scroll to', window.screenTop)
+
 }

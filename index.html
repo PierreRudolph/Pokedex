@@ -41,6 +41,7 @@
 <body id="body" onload="getPokemonJSON('offset');includeHTML();">
 
     <div class="body-div">
+
         <div class="header">
             <div class="text-center text-white mobile-headline">
                 <h1>Pokedex</h1>
@@ -151,7 +152,7 @@
                         </div>
                         <div class="d-flex align-items-center">
                             <div class="poke-search-input">
-                                <input type="number" min="1" max="905" class="form-control" placeholder="Id#(1-905)"
+                                <input type="number" min="1" max="1017" class="form-control" placeholder="Id#(1-1017)"
                                     id="search-input">
                             </div>
                             <div>
@@ -169,9 +170,12 @@
                 <h5 id="poke-found-text" class="poke-found-headline">Gefundene Pokemon:</h5>
 
 
+
             </div>
             <div id="pokedex-found" class="pokedex-found"></div>
-
+            <div class="delete-all-div"><a class="link-secondary" onclick="deletePokemonFound()">
+                    <div class="delete-all" id="delete-all-text">Gefundene Löschen</div>
+                </a></div>
         </div>
 
         <div id="pokedex" class="pokedex">
@@ -181,6 +185,12 @@
                 <div class="load-more" id="load-more-text">Mehr Laden (25)</div>
             </a>
         </div>
+        <div class="scroll-arrow">
+            <img src="img/arrow-bar-up.svg" onclick="scrollToTop()">
+
+        </div>
+
+
         <div class="footer">
 
             <div>

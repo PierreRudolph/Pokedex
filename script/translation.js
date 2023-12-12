@@ -49,12 +49,13 @@ function checkIfBigCardIsShowing() {
 
 
 function translateTextToEnglish() {
-    const { howMany, fromId, loadGen, findPoke, pokeFound, loadMore, imprint, dataPolicy } = getHTMLElementsText();
+    const { howMany, fromId, loadGen, findPoke, pokeFound, deleteFound, loadMore, imprint, dataPolicy } = getHTMLElementsText();
     howMany.innerHTML = 'How many Load?:';
     fromId.innerHTML = 'Load from Id#:';
     loadGen.innerHTML = 'Load Geneneration :';
     findPoke.innerHTML = 'Find Pokemon:';
     pokeFound.innerHTML = 'Pokemon Found:';
+    deleteFound.innerHTML = 'Delete Found';
     loadMore.innerHTML = 'Load More';
     imprint.innerHTML = 'Imprint';
     dataPolicy.innerHTML = 'Privacy policy';
@@ -62,12 +63,13 @@ function translateTextToEnglish() {
 
 
 function translateTextToGerman() {
-    const { howMany, fromId, loadGen, findPoke, pokeFound, loadMore, imprint, dataPolicy } = getHTMLElementsText();
+    const { howMany, fromId, loadGen, findPoke, pokeFound, deleteFound, loadMore, imprint, dataPolicy } = getHTMLElementsText();
     howMany.innerHTML = 'Pokemon Anzeigen:';
     fromId.innerHTML = 'Ab Id# Laden:';
     loadGen.innerHTML = 'Generation laden:';
     findPoke.innerHTML = 'Pokemon finden:';
     pokeFound.innerHTML = 'Gefundene Pokemon:';
+    deleteFound.innerHTML = 'Gefundene Löschen';
     loadMore.innerHTML = 'Mehr Laden';
     imprint.innerHTML = 'Impressum';
     dataPolicy.innerHTML = 'Datenschutzerklärung';
@@ -139,6 +141,7 @@ function getHTMLElementsText() {
         loadGen: document.getElementById('load-gen-text'),
         findPoke: document.getElementById('find-text'),
         pokeFound: document.getElementById('poke-found-text'),
+        deleteFound: document.getElementById('delete-all-text'),
         loadMore: document.getElementById('load-more-text'),
         imprint: document.getElementById('imprint-text'),
         dataPolicy: document.getElementById('data-policy-text')
@@ -159,6 +162,7 @@ function searchAbilitiesTranslations(abilityToSearchFor) {
             return abilityToSearchFor;
         }
     }
+
 }
 
 
