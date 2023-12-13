@@ -24,7 +24,6 @@
     <script src="script/script.js"></script>
     <script src="script/abilitiesTranslations.js"></script>
     <script src="script/bigCard.js"></script>
-    <script src="script/pokeNamesDe.js"></script>
     <script src="script/translation.js"></script>
 
     <link rel="stylesheet" href="style/bootstrap-min.css">
@@ -81,53 +80,46 @@
                         </button>
                         <ul class="dropdown-menu bg-dark">
                             <li>
-                                <h6 class="dropdown-header">Pokemon Generationen (National Index)</h6>
+                                <h6 class="dropdown-header" id="gene-headline">Pokemon Generationen (National Index)
+                                </h6>
                             </li>
-                            <li><a onclick="setOffsetNumber(0)" class="dropdown-item" href="#">
-                                    Ab der Roten und der Blauen Edition
-                                    (1-151)</a>
+                            <li><a id="load-1" onclick="setOffsetNumber(0)" class="dropdown-item" href="#">
+                                    Ab der Roten und der Blauen Edition (1-151)</a>
                             </li>
-                            <li><a onclick="setOffsetNumber(151)" class="dropdown-item" href="#">
-                                    Ab der Goldenen und Silbernen
-                                    Edition (152-251)</a>
+                            <li><a id="load-2" onclick="setOffsetNumber(151)" class="dropdown-item" href="#">
+                                    Ab der Goldenen und Silbernen Edition (152-251)</a>
                             </li>
-                            <li><a onclick="setOffsetNumber(251)" class="dropdown-item" href="#">
-                                    Ab der Rubin- und der
-                                    Saphir-Edition (252-386)</a>
+                            <li><a id="load-3" onclick="setOffsetNumber(251)" class="dropdown-item" href="#">
+                                    Ab der Rubin und Saphir Edition (252-386)</a>
                             </li>
 
-                            <li><a onclick="setOffsetNumber(286)" class="dropdown-item" href="#">
-                                    Ab der Diamant- und Perl-Edition
-                                    (387-493)</a>
+                            <li><a id="load-4" onclick="setOffsetNumber(286)" class="dropdown-item" href="#">
+                                    Ab der Diamant und Perl Edition (387-493)</a>
                             </li>
-                            <li><a onclick="setOffsetNumber(493)" class="dropdown-item" href="#">
-                                    Ab der Schwarzen und der Weißen
-                                    Edition (494-649)</a>
+                            <li><a id="load-5" onclick="setOffsetNumber(493)" class="dropdown-item" href="#">
+                                    Ab der Schwarzen und Weißen Edition (494-649)</a>
                             </li>
-                            <li><a onclick="setOffsetNumber(649)" class="dropdown-item" href="#">
+                            <li><a id="load-6" onclick="setOffsetNumber(649)" class="dropdown-item" href="#">
                                     Ab X und Y (650-721)</a>
                             </li>
 
-                            <li><a onclick="setOffsetNumber(721)" class="dropdown-item" href="#">
+                            <li><a id="load-7" onclick="setOffsetNumber(721)" class="dropdown-item" href="#">
                                     Ab Sonne und Mond (722-802)</a>
                             </li>
-                            <li><a onclick="setOffsetNumber(802)" class="dropdown-item" href="#">
-                                    Ab Ultrasonne und Ultramond
-                                    (803-807)</a></li>
-                            <li><a onclick="setOffsetNumber(807)" class="dropdown-item" href="#">
+                            <li><a id="load-8" onclick="setOffsetNumber(802)" class="dropdown-item" href="#">
+                                    Ab Ultrasonne und Ultramond (803-807)</a></li>
+                            <li><a id="load-9" onclick="setOffsetNumber(807)" class="dropdown-item" href="#">
                                     Ab Pokémon Let's Go (808-809)</a>
                             </li>
 
-                            <li><a onclick="setOffsetNumber(809)" class="dropdown-item" href="#">
+                            <li><a id="load-10" onclick="setOffsetNumber(809)" class="dropdown-item" href="#">
                                     Ab Schwert und Schild (810-898)</a>
                             </li>
-                            <li><a onclick="setOffsetNumber(898)" class="dropdown-item" href="#">
-                                    Ab Pokémon Legenden: Arceus
-                                    (899-905)</a>
+                            <li><a id="load-11" onclick="setOffsetNumber(898)" class="dropdown-item" href="#">
+                                    Ab Pokémon Legenden: Arceus (899-905)</a>
                             </li>
-                            <li><a onclick="setOffsetNumber(905)" class="dropdown-item" href="#">
-                                    Ab Pokémon Legenden: Karmesin und Purpur
-                                    (906-1017)</a>
+                            <li><a id="load-12" onclick="setOffsetNumber(905)" class="dropdown-item" href="#">
+                                    Ab Pokémon Legenden: Karmesin und Purpur (906-1017)</a>
                             </li>
                         </ul>
                     </div>

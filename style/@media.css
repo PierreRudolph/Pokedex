@@ -29,11 +29,6 @@
         top: -229px;
     }
 
-    /* .scroll-arrow {
-        position: sticky;
-        bottom: 10px;
-    } */
-
     .header-left {
         margin-top: 1em;
     }
@@ -77,6 +72,7 @@
 
     #pokedex {
         padding: 0.7em !important;
+        padding-top: 1.4em !important;
     }
 
     .card-header {
@@ -134,6 +130,7 @@
 
     .nav-link {
         font-size: 1em !important;
+        padding: 9px 12px;
     }
 
     .stats-bar-div {
@@ -141,8 +138,13 @@
     }
 
     .expirience-div {
+        flex-direction: column;
         margin-right: 0.5em;
         min-width: 0em !important;
+    }
+
+    .abilities-outer-div {
+        min-width: unset;
     }
 
     .load-more-div {
@@ -191,11 +193,6 @@
 }
 
 @media (max-width:450px) {
-    ul {
-        width: calc(100vw - 24px);
-    }
-
-
     .dropdown-item {
         text-wrap: pretty;
     }

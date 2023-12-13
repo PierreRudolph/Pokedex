@@ -6,7 +6,7 @@ let startNum = 0;
 
 let lastCardId = 0
 let typesDivId = -1;
-let translationNum = 0;
+let translationNum = 1;
 let currenBigCardPokemon;
 let currentBigCardSpeciesPokemon;
 let foundPokemon = [];
@@ -22,12 +22,18 @@ async function getPokemonJSON(startFrom) {
     let pokeList = await listResponse.json();
     let pokeListSpecies;
     pokeList = pokeList['results'];
+    pokeListSpecies = await getPokeListSpeciesIfAviable(pokeListSpecies);
 
+    loadPokemonJSON(pokeList, pokeListSpecies);
+}
+
+
+async function getPokeListSpeciesIfAviable(pokeListSpecies) {
     if (loadPokemonSpecies()) {
         pokeListSpecies = await getPokemonSpeciesJSON(startNum);
         pokeListSpecies = pokeListSpecies['results'];
     }
-    loadPokemonJSON(pokeList, pokeListSpecies);
+    return pokeListSpecies
 }
 
 
@@ -40,7 +46,16 @@ async function getPokemonSpeciesJSON(startNum) {
 
 async function loadPokemonJSON(pokeList, pokeListSpecies) {
     onOrOffAllLinks('off');
+    await renderCards(pokeList, pokeListSpecies);
+    lastCardId = currentPokemon['id'];
+    translateTypesIfSet();
+    onOrOffAllLinks('on');
+    playAnySound('click-low');
+    loadFoundPokemonFirstTime()
+}
 
+
+async function renderCards(pokeList, pokeListSpecies) {
     for (let i = 0; i < pokeList.length; i++) {
         let pokeUrl = pokeList[i]['url'];
         let response = await fetch(pokeUrl);
@@ -50,14 +65,6 @@ async function loadPokemonJSON(pokeList, pokeListSpecies) {
         }
         renderCard('pokedex');
     }
-    lastCardId = currentPokemon['id'];
-    translateTypesIfSet();
-    onOrOffAllLinks('on');
-    playAnySound('click-low');
-    if (foundPokemonLoaded == 0) {
-        loadFoundPokemon();
-        foundPokemonLoaded = 1;
-    }
 }
 
 
@@ -65,6 +72,14 @@ async function loadPokemonSpeciesJSON(pokeListSpecies, i) {
     let pokeSpeciesUrl = pokeListSpecies[i]['url'];
     let responseSpecies = await fetch(pokeSpeciesUrl);
     return await responseSpecies.json();
+}
+
+
+function loadFoundPokemonFirstTime() {
+    if (foundPokemonLoaded == 0) {
+        loadFoundPokemon();
+        foundPokemonLoaded = 1;
+    }
 }
 
 
@@ -288,7 +303,7 @@ function clearPokedex() {
 function deletePokemonFound() {
     localStorage.removeItem('found-pokemon');
     clearPokedexFound();
-    addDisplayNone();
+    hidePokemonFoundDiv();
     removeDexDivFoundDivPadding();
 }
 
@@ -359,10 +374,12 @@ function setDexDivFoundDivPadding() {
     pokedex.classList.add('pokedex-padding-top-if-found-div-showing');
 }
 
+
 function hidePokemonFoundDiv() {
     let pokeFoundDiv = document.getElementById('pokedex-found-div');
     pokeFoundDiv.classList.add('d-none');
 }
+
 
 function removeDexDivFoundDivPadding() {
     let pokedex = document.getElementById('pokedex');
@@ -404,9 +421,7 @@ function removeDisplayNone(imp_pri) {
     playAnySound('click-high');
     let impPri = document.getElementById(`${imp_pri}`);
     impPri.classList.remove('d-none');
-    if (imp_pri == 'privacy-policy') {
-        bodyOverflowOnOff(1);
-    }
+    bodyOverflowOnOff(1);
 }
 
 
@@ -439,13 +454,20 @@ function playBackgroundMusic() {
         music.loop = true;
     }
 }
-function isPlaying(audelem) { return !audelem.paused; }
+
+
+function isPlaying(audelem) {
+    return !audelem.paused;
+}
+
+
 function playAnySound(soundName) {
     let sound = new Audio(src = `sounds/${soundName}.mp3`);
     sound.volume = 0.7;
     sound.load();
     sound.play();
 }
+
 
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
@@ -461,8 +483,7 @@ async function includeHTML() {
     }
 }
 
+
 function scrollToTop() {
     window.scrollTo(0, 0);
-    console.log('scroll to', window.screenTop)
-
 }

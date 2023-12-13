@@ -23,12 +23,14 @@ function setTranslationNum() {
 
 function translateToGerman() {
     translateTextToGerman();
+    translateDropdownToGerman();
     translateBigCardToGerman();
 }
 
 
 function translateToEnglish() {
     translateTextToEnglish();
+    translateDropdownToEnglish()
     translateBigCardToEnglish();
 }
 
@@ -42,6 +44,7 @@ function restartShowingContent() {
     }
 }
 
+
 function checkIfBigCardIsShowing() {
     let bigCardDiv = document.getElementById('big-card-div');
     return bigCardDiv.classList.contains('d-none');
@@ -52,7 +55,7 @@ function translateTextToEnglish() {
     const { howMany, fromId, loadGen, findPoke, pokeFound, deleteFound, loadMore, imprint, dataPolicy } = getHTMLElementsText();
     howMany.innerHTML = 'How many Load?:';
     fromId.innerHTML = 'Load from Id#:';
-    loadGen.innerHTML = 'Load Geneneration :';
+    loadGen.innerHTML = 'Load Geneneration:';
     findPoke.innerHTML = 'Find Pokemon:';
     pokeFound.innerHTML = 'Pokemon Found:';
     deleteFound.innerHTML = 'Delete Found';
@@ -73,6 +76,42 @@ function translateTextToGerman() {
     loadMore.innerHTML = 'Mehr Laden';
     imprint.innerHTML = 'Impressum';
     dataPolicy.innerHTML = 'Datenschutzerklärung';
+}
+
+
+function translateDropdownToEnglish() {
+    const { genHeadline, load1, load2, load3, load4, load5, load6, load7, load8, load9, load10, load11, load12 } = getHTMLElementsDropdown();
+    genHeadline.innerHTML = 'Pokemon Generations (National Index)';
+    load1.innerHTML = 'From the Red and Blue Edition (1-151)';
+    load2.innerHTML = 'From the Gold and Silver Edition (152-251)';
+    load3.innerHTML = 'From the Ruby and Sapphire Edition (252-386)';
+    load4.innerHTML = 'From the Diamond and Pearl Edition (387-493)';
+    load5.innerHTML = 'From the Black and White Edition (494-649)';
+    load6.innerHTML = 'From X and Y (650-721)';
+    load7.innerHTML = 'From Sonne and Mond (722-802)';
+    load8.innerHTML = 'From Ultra Sun and Ultra Moon (803-807)';
+    load9.innerHTML = 'From Pokémon Let\'s Go (808-809)';
+    load10.innerHTML = 'From Sword and Shield (810-898)';
+    load11.innerHTML = 'From Pokémon Legends: Arceus (899-905)';
+    load12.innerHTML = 'From Pokémon Legends: Scarlet and Violet (906-1017)';
+}
+
+
+function translateDropdownToGerman() {
+    const { genHeadline, load1, load2, load3, load4, load5, load6, load7, load8, load9, load10, load11, load12 } = getHTMLElementsDropdown();
+    genHeadline.innerHTML = 'Pokemon Generationen (National Index)';
+    load1.innerHTML = 'Ab der Roten und der Blauen Edition (1-151)';
+    load2.innerHTML = 'Ab der Goldenen und Silbernen Edition (152-251)';
+    load3.innerHTML = 'Ab der Rubin und Saphir-Edition (252-386)';
+    load4.innerHTML = 'Ab der Diamant und Perl-Edition (387-493)';
+    load5.innerHTML = 'Ab der Schwarzen und Weißen Edition (494-649)';
+    load6.innerHTML = 'Ab X und Y (650-721)';
+    load7.innerHTML = 'Ab Sonne und Mond (722-802)';
+    load8.innerHTML = 'Ab Ultrasonne und Ultramond (803-807)';
+    load9.innerHTML = 'Ab Pokémon Let\'s Go (808-809)';
+    load10.innerHTML = 'Ab Schwert und Schild (810-898)';
+    load11.innerHTML = 'Ab Pokémon Legenden: Arceus (899-905)';
+    load12.innerHTML = 'Ab Pokémon Legenden: Karmesin und Purpur (906-1017)';
 }
 
 
@@ -116,18 +155,15 @@ function getHtmlElementsBigCard() {
     return {
         baseStats: document.getElementById('base-stats-text'),
         abilities: document.getElementById('abilities-text'),
-
         hp: document.getElementById('hp-text'),
         attack: document.getElementById('attack-text', 'attack2-text'),
         defense: document.getElementById('defense-text'),
         specialAttack: document.getElementById('special-attack-text'),
         specialDefense: document.getElementById('special-defense-text'),
         speed: document.getElementById('speed-text'),
-
         height: document.getElementById('height-text'),
         weight: document.getElementById('weight-text'),
         types: document.getElementById('types-text'),
-
         baseExp: document.getElementById('base-exp-text'),
         abilities2: document.getElementById('abilities2-text'),
     }
@@ -145,6 +181,25 @@ function getHTMLElementsText() {
         loadMore: document.getElementById('load-more-text'),
         imprint: document.getElementById('imprint-text'),
         dataPolicy: document.getElementById('data-policy-text')
+    }
+}
+
+
+function getHTMLElementsDropdown() {
+    return {
+        genHeadline: document.getElementById('gene-headline'),
+        load1: document.getElementById('load-1'),
+        load2: document.getElementById('load-2'),
+        load3: document.getElementById('load-3'),
+        load4: document.getElementById('load-4'),
+        load5: document.getElementById('load-5'),
+        load6: document.getElementById('load-6'),
+        load7: document.getElementById('load-7'),
+        load8: document.getElementById('load-8'),
+        load9: document.getElementById('load-9'),
+        load10: document.getElementById('load-10'),
+        load11: document.getElementById('load-11'),
+        load12: document.getElementById('load-12')
     }
 }
 
@@ -180,64 +235,103 @@ function translateTypesIfSet() {
         return
     }
     let allSpans = document.getElementsByTagName('span');
-
     for (let i = 0; i < allSpans.length; i++) {
         let string = allSpans[i].innerHTML;
         let span = allSpans[i];
+        typeTranslationOne(string, span);
+        typeTranslationTwo(string, span);
+        typeTranslationThree(string, span);
+        typeTranslationFour(string, span);
+        typeTranslationFive(string, span);
+    }
+}
 
-        if (string.includes('Water')) {
-            span.innerHTML = 'Wasser';
-        }
-        if (string.includes('Grass')) {
-            span.innerHTML = 'Pflanze';
-        }
-        if (string.includes('Fire')) {
-            span.innerHTML = 'Feuer';
-        }
-        if (string.includes('Ground')) {
-            span.innerHTML = 'Boden';
-        }
-        if (string.includes('Bug')) {
-            span.innerHTML = 'Käfer';
-        }
-        if (string.includes('Steel')) {
-            span.innerHTML = 'Stahl';
-        }
-        if (string.includes('Dark')) {
-            span.innerHTML = 'Unlicht';
-        }
-        if (string.includes('Flying')) {
-            span.innerHTML = 'Fliegen';
-        }
-        if (string.includes('Poison')) {
-            span.innerHTML = 'Gift';
-        }
-        if (string.includes('Ghost')) {
-            span.innerHTML = 'Geist';
-        }
-        if (string.includes('Dragon')) {
-            span.innerHTML = 'Drache';
-        }
-        if (string.includes('Electric')) {
-            span.innerHTML = 'Elektrizität';
-        }
-        if (string.includes('Fighting')) {
-            span.innerHTML = 'Kampf';
-        }
-        if (string.includes('Fairy')) {
-            span.innerHTML = 'Fee';
-        }
-        if (string.includes('Ice')) {
-            span.innerHTML = 'Eis';
-        }
-        if (string.includes('Rock')) {
-            span.innerHTML = 'Stein';
-        }
-        if (string.includes('Psychic')) {
-            span.innerHTML = 'Psycho';
-        }
-        if (string.includes('Normal')) {
-            span.innerHTML = 'Normal';
-        }
+
+function typeTranslationOne(string, span) {
+    if (string.includes('Water')) {
+        span.innerHTML = 'Wasser';
+        return;
+    }
+    if (string.includes('Grass')) {
+        span.innerHTML = 'Pflanze';
+        return;
+    }
+    if (string.includes('Fire')) {
+        span.innerHTML = 'Feuer';
+        return;
+    }
+    if (string.includes('Ground')) {
+        span.innerHTML = 'Boden';
+        return;
+    }
+}
+
+
+function typeTranslationTwo(string, span) {
+    if (string.includes('Bug')) {
+        span.innerHTML = 'Käfer';
+        return;
+    }
+    if (string.includes('Steel')) {
+        span.innerHTML = 'Stahl';
+        return;
+    }
+    if (string.includes('Dark')) {
+        span.innerHTML = 'Unlicht';
+        return;
+    }
+    if (string.includes('Flying')) {
+        span.innerHTML = 'Fliegen';
+        return;
+    }
+}
+
+
+function typeTranslationThree(string, span) {
+    if (string.includes('Poison')) {
+        span.innerHTML = 'Gift';
+        return;
+    }
+    if (string.includes('Ghost')) {
+        span.innerHTML = 'Geist';
+        return;
+    }
+    if (string.includes('Dragon')) {
+        span.innerHTML = 'Drache';
+        return;
+    }
+    if (string.includes('Electric')) {
+        span.innerHTML = 'Elektrizität';
+        return;
+    }
+}
+
+
+function typeTranslationFour(string, span) {
+    if (string.includes('Fighting')) {
+        span.innerHTML = 'Kampf';
+        return;
+    }
+    if (string.includes('Fairy')) {
+        span.innerHTML = 'Fee';
+        return;
+    }
+    if (string.includes('Ice')) {
+        span.innerHTML = 'Eis';
+        return;
+    }
+    if (string.includes('Rock')) {
+        span.innerHTML = 'Stein';
+        return;
+    }
+}
+
+
+function typeTranslationFive(string, span) {
+    if (string.includes('Psychic')) {
+        span.innerHTML = 'Psycho';
+    }
+    if (string.includes('Normal')) {
+        span.innerHTML = 'Normal';
     }
 }

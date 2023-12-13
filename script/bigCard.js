@@ -1,24 +1,28 @@
 async function getPokemonByIdBigCard(id) {
     playBackgroundMusic();
     playAnySound('click-high');
+    await getPokemonResponse(id);
+    await getPokemonSpeciesResponse(id);
+    renderBigCard();
+    translateBigCardIfSet();
+}
+
+
+async function getPokemonResponse(id) {
     let url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     let response = await fetch(url);
     currentBigCardPokemon = await response.json();
+}
+
+
+async function getPokemonSpeciesResponse(id) {
     if (loadPokemonSpecies()) {
-        currentBigCardSpeciesPokemon = await getPokemonSpeciesByIdBigCard(id);
-    }
-    renderBigCard();
-    if (translationNum == 1) {
-        translateToGerman();
-        translateTypesIfSet();
+        let urlSpecies = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
+        let responseSpecies = await fetch(urlSpecies);
+        currentBigCardSpeciesPokemon = await responseSpecies.json();
     }
 }
 
-async function getPokemonSpeciesByIdBigCard(id) {
-    let urlSpecies = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
-    let responseSpecies = await fetch(urlSpecies);
-    return await responseSpecies.json();
-}
 
 function formatNumber(number) {
     let formatedNumber = number.toString();
@@ -30,30 +34,25 @@ function formatNumber(number) {
 
 
 function renderBigCard() {
-    let bigCardDiv = document.getElementById('big-card-div');
-    bigCardDiv.classList.remove('d-none');
-    let bigCard = document.getElementById('big-card');
-    bigCard.className = '';
-    bigCard.classList.add('card', 'big-card', `card-bg-${currentBigCardPokemon['types'][0]['type']['name']}`);
+    prepareBigCard();
 
     bigCardinnerHTMLInfo();
     getPokeStats();
     getBarWidth();
     getBigCardTypes();
     getBigCardAbilities();
-    //translateTypesIfSet();
     dragElement(document.getElementById("big-card-div"));
     changeMouseStyle();
 }
 
 
-// function translateTextIfSet() {
-//     if (translatenNum == 1) {
-//         translateBigCardToGerman();
-//     } else if (translatenNum == 0) {
-//         translateBigCardToEnglish();
-//     }
-// }
+function prepareBigCard() {
+    let bigCardDiv = document.getElementById('big-card-div');
+    bigCardDiv.classList.remove('d-none');
+    let bigCard = document.getElementById('big-card');
+    bigCard.className = '';
+    bigCard.classList.add('card', 'big-card', `card-bg-${currentBigCardPokemon['types'][0]['type']['name']}`);
+}
 
 
 function bigCardinnerHTMLInfo() {
@@ -137,26 +136,10 @@ function getBigCardAbilities() {
     let abilitiesDiv = document.getElementById('abilities-div');
     let abilities = currentBigCardPokemon['abilities'];
     abilitiesDiv.innerHTML = '';
+
     for (let i = 0; i < abilities.length; i++) {
         let ability = currentBigCardPokemon['abilities'][i]['ability']['name'];
-
-        if (translationNum == 1) {
-            foundAbility = searchAbilitiesTranslations(ability);
-            if (foundAbility) {
-                ability = foundAbility;
-            } else {
-
-                console.log('could not find ability translation:', ability);
-                ability = prepareAbilityName(ability);
-                console.log('could not find ability translation:', ability);
-                // debugger;
-            }
-        } else {
-            ability = prepareAbilityName(ability);
-        }
-        if (ability == 'Drache') {
-            debugger;
-        }
+        ability = translateAndPrepareAbilityName(ability);
         abilitiesDiv.innerHTML += /*html*/`
         <div class="type-div"><span>${ability}</span></div>
         `;
@@ -164,6 +147,26 @@ function getBigCardAbilities() {
 }
 
 
+function translateAndPrepareAbilityName(ability) {
+    if (translationNum == 1) {
+        foundAbility = searchAbilitiesTranslations(ability);
+        ability = setAbilityName(foundAbility, ability);
+    } else {
+        ability = prepareAbilityName(ability);
+    }
+    return ability;
+}
+
+
+function setAbilityName(foundAbility, ability) {
+    if (foundAbility) {
+        ability = foundAbility;
+    } else {
+        console.log('could not find ability translation:', ability);
+        ability = prepareAbilityName(ability);
+    }
+    return ability;
+}
 
 
 function getBigCardTypes() {
@@ -237,5 +240,13 @@ function dragElement(elmnt) {
         body.style.cursor = 'default';
         document.onmouseup = null;
         document.onmousemove = null;
+    }
+}
+
+
+function translateBigCardIfSet() {
+    if (translationNum == 1) {
+        translateToGerman();
+        translateTypesIfSet();
     }
 }
