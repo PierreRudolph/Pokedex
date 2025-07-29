@@ -1,6 +1,6 @@
 let currentPokemon;
 let currentPokemonSpecies;
-let pokeLoadNumber = 25;
+let pokeLoadNumber = 9;
 let offsetNum = 0;
 let startNum = 0;
 
@@ -152,7 +152,7 @@ function loadMore() {
     playBackgroundMusic();
     playAnySound('click-high');
     onOrOffAllLinks('off');
-    pokeLoadNumber = 25;
+    pokeLoadNumber = 9;
     saveNumValue('poke-load-num', pokeLoadNumber);
     getPokemonJSON('last-card');
 }

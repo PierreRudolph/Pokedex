@@ -1,14 +1,14 @@
 body {
     scroll-behavior: smooth;
     position: relative;
-
     margin: 0px;
     background-color: black;
     overflow-y: auto;
 }
 
 .body-div {
-
+height: 100dvh;
+    height: 100vh;
     margin: 0px;
     font-family: 'Rubik', sans-serif;
     background-color: black;
@@ -72,6 +72,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-content: flex-start;
+      flex: 1;
     color: white;
 }
 
@@ -169,7 +170,7 @@ body {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .audio-translation-div audio {
